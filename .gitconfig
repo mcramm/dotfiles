@@ -1,0 +1,31 @@
+[user]
+	email = GMCramm@gmail.com
+	name = mcramm
+[gui]
+	recentrepo = /Users/gmichaelcramm/Documents/Rails/repos/ideas
+
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log -p
+	unstage = reset HEAD --
+	last = log -1 HEAD
