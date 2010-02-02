@@ -2,7 +2,7 @@
 colorscheme desert
 
 " General options
-set tabstop=r2
+set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
