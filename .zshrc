@@ -42,4 +42,3 @@ alias ve='vi +'
 alias mysql='mysql -uroot -p'
 alias duSort="du -ak |sort -nr | less"
 alias proj='cd ~/rails/repos/'
-alias simpv='cd ~/rails/repos/simplivote/'
