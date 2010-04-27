@@ -10,7 +10,7 @@ set expandtab
 set foldmethod=indent
 set autoindent
 set smartindent
-
+set wildmenu
  
 syntax on
 filetype on
@@ -27,3 +27,8 @@ function InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 nnoremap <C-D> :qa<CR>
+:map <F2> :set nowrap! <CR>
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
