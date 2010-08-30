@@ -1,4 +1,5 @@
 # Lines configured by zsh-newuser-install
+
 HISTFILE=~/.histfile
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -8,7 +9,8 @@ unsetopt autocd beep notify
 #bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/Users/gmichaelcramm/.zshrc'
+zstyle :compinstall filename '/home/mike/.zshrc'
+
 
 autoload -Uz compinit
 compinit
@@ -18,6 +20,7 @@ RPROMPT=$'%{\e[0;32m%}%~  -(%t)-%{\e[0m%}'
 
 export CLICOLOR=1
  export LSCOLORS=ExFxCxDxBxegedabagacad
+export SVN_EDITOR=vi
 
 PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
 export PATH
@@ -29,11 +32,13 @@ export PATH=/usr/local/mysql/bin:$PATH
 
 ###########      Custom Aliases      ###########
 
+alias ls="ls --color=always"
 alias lt='ls -ltrha'
 alias www='cd /var/www/'
 alias mysqlp='mysql -uroot -p'
 alias cv="clear"
 alias h='history'
+alias history='history -10000'
 #alias history='cat ~/.histfile'
 alias hg='history | grep'
 alias gr='grep -r'
@@ -42,3 +47,5 @@ alias ve='vi +'
 alias mysql='mysql -uroot -p'
 alias duSort="du -ak |sort -nr | less"
 alias proj='cd ~/rails/repos/'
+
+alias hero="cd ~/www/trailertrash"
