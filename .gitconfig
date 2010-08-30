@@ -1,8 +1,6 @@
 [user]
 	email = GMCramm@gmail.com
 	name = mcramm
-[gui]
-	recentrepo = /Users/gmichaelcramm/Documents/Rails/repos/ideas
 
 [color]
 	ui = auto
@@ -29,3 +27,5 @@
 	lg = log -p
 	unstage = reset HEAD --
 	last = log -1 HEAD
+    nl = log --pretty=format:'%h : %an(%ad) - %s' --graph --date=short
+    propermerge = merge --squash --ff-only --no-commit
