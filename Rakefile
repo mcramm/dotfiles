@@ -23,7 +23,7 @@ task :update_submodules do
 end
 
 task :default => [
-    :update_submodules
+    :update_submodules,
     :move_files,
     :link_vimrc
 ]
