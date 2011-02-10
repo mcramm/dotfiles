@@ -1,0 +1,83 @@
+"Changing Colorscheme (Located ~/.vim/colors/)
+set t_Co=256
+"colorscheme desert256
+colorscheme mike_wombat
+
+" General options
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+set incsearch
+set ruler
+
+"set foldmethod=indent
+set autoindent
+set smartindent
+"set wildmenu
+
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+"Syntastic stuff
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+
+set cursorcolumn
+ 
+"set number
+let mapleader = ","
+
+"COmmand T stuff
+:let g:CommandTMaxHeight=10
+:let g:CommandTAlwaysShowDotFiles=1
+:let g:CommandTMaxFiles=20000
+
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
+
+:highlight LineNr ctermbg=DarkGray
+
+"Tab Completion
+function InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"     
+  else
+     return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+nnoremap <C-D> :qa<CR>
+:map <F2> :set nowrap! <CR>
+:map <F3> :set number! <CR>
+:map <F4> :set paste! <CR>
+:map <F5> :CommandTFlush <CR>
+:map ,n :NERDTreeToggle<CR>
+:map ,t :CommandT<CR>
+:map ,b :LustyJuggler<CR>
+:map ,w :w<CR>
+:map ,q :q<CR>
+:map ,wq :wq<CR>
+noremap <Left>  <NOP>
+noremap <Up>    <NOP>
+noremap <Down>  <NOP>
+noremap <Right>  <NOP>
+vmap <C-k> [egv
+vmap <C-j> ]egv
+nmap <C-k> [e
+nmap <C-j> ]e
+nmap gV '[v`]
+cmap W w

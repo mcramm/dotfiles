@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/mike/projects/test_slim'
+let g:netrw_dirhist_2='/home/mike/www/nightracer'
+let g:netrw_dirhist_3='/home/mike/www/mike_hero/log'
+let g:netrw_dirhist_4='/home/mike/.ssh'
+let g:netrw_dirhist_5='/home/mike/projects/netsuite-scripts'
+let g:netrw_dirhist_6='/home/mike/.vim'
+let g:netrw_dirhist_7='/home/mike/www/mike_hero/app/installers'
+let g:netrw_dirhist_8='/home/mike/www/mike_hero/tmp/nightracer/views/estatements'

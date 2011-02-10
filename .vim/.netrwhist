@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/mike/www/trailertrash/public/javascripts/util/buildscripts/profiles'
-let g:netrw_dirhist_2='/home/mike/projects/liveUpdates'
-let g:netrw_dirhist_3='/home/mike/www/mike_adamsdental_2/public/data/mike_adamsdental_2'
