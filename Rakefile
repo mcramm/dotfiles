@@ -17,7 +17,13 @@ task :link_vimrc do
     end
 end
 
+desc "update submodules"
+task :update_submodules do
+    `git submodule update --init --recursive`
+end
+
 task :default => [
+    :update_submodules
     :move_files,
     :link_vimrc
 ]
