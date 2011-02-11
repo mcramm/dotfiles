@@ -8,6 +8,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set list listchars=tab:\ \ ,trail:·
 
 set incsearch
 set ruler
@@ -50,15 +51,27 @@ filetype indent on
 
 :highlight LineNr ctermbg=DarkGray
 
+
 "Tab Completion
 function InsertTabWrapper()
   let col = col('.') - 1
   if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"     
+    return "\<tab>"
   else
      return "\<c-p>"
   endif
 endfunction
+
+function OpenFileAndCloseQf()
+    .cc
+    ccl
+    call search(g:ack_pattern)
+    call matchadd('Search', g:ack_pattern)
+    let @/=g:ack_pattern
+endfunction
+" open file and close quickfix window on carriage return
+au FileType qf nnoremap <silent> <buffer> <CR> <ESC>:call OpenFileAndCloseQf()<cr>
+
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 nnoremap <C-D> :qa<CR>
 :map <F2> :set nowrap! <CR>
