@@ -1,25 +1,29 @@
-"Changing Colorscheme (Located ~/.vim/colors/)
+set nocompatible
 set t_Co=256
-"colorscheme desert256
 colorscheme mike_wombat
 
-" General options
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set list listchars=tab:\ \ ,trail:·
-
-set incsearch
+set number
 set ruler
+syntax on
 
-"set foldmethod=indent
+" Set encoding
+set encoding=utf-8
+
+" Whitespace stuff
+set nowrap
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
 set autoindent
 set smartindent
-"set wildmenu
+set list listchars=tab:\ \ ,trail:·
 
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc
+"syntax on
+syntax enable
+filetype on
+filetype plugin on
+filetype indent on
 
 " Searching
 set hlsearch
@@ -27,70 +31,145 @@ set incsearch
 set ignorecase
 set smartcase
 
-"Syntastic stuff
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=1
+" Tab completion
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*
 
-set cursorcolumn
- 
-"set number
+
+" Without setting this, ZoomWin restores windows in a way that causes
+" equalalways behavior to be triggered the next time CommandT is used.
+" This is likely a bludgeon to solve some other issue, but it works
+set noequalalways
+
 let mapleader = ","
 
-"COmmand T stuff
-:let g:CommandTMaxHeight=10
+" NERDTree configuration
+let NERDTreeIgnore=['\.rbc$', '\~$']
+map <Leader>n :NERDTreeToggle<CR>
+
+" Command-T configuration
+:let g:CommandTMaxHeight=20
 :let g:CommandTAlwaysShowDotFiles=1
 :let g:CommandTMaxFiles=20000
+:map <C-T> :CommandT<CR>
+:map <D-T> :CommandT<CR>
 
-syntax on
-filetype on
-filetype plugin on
-filetype indent on
+" ZoomWin configuration
+map <Leader><Leader> :ZoomWin<CR>
 
-:highlight LineNr ctermbg=DarkGray
+" CTags
+map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+map <C-\> :tnext<CR>
 
+" Remember last location in file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+endif
 
-"Tab Completion
-function InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-     return "\<c-p>"
-  endif
+function s:setupWrapping()
+  set wrap
+  set wm=2
+  set textwidth=72
 endfunction
 
-function OpenFileAndCloseQf()
-    .cc
-    ccl
-    call search(g:ack_pattern)
-    call matchadd('Search', g:ack_pattern)
-    let @/=g:ack_pattern
+function s:setupMarkup()
+  call s:setupWrapping()
+  map <buffer> <Leader>p :Mm <CR>
 endfunction
-" open file and close quickfix window on carriage return
-au FileType qf nnoremap <silent> <buffer> <CR> <ESC>:call OpenFileAndCloseQf()<cr>
 
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-nnoremap <C-D> :qa<CR>
+" make uses real tabs
+au FileType make                                     set noexpandtab
+
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+
+" md, markdown, and mk are markdown and define buffer-local preview
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
+
+au BufRead,BufNewFile *.txt call s:setupWrapping()
+
+" make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+au FileType python  set tabstop=4 textwidth=79
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" load the plugin and indent settings for the detected filetype
+filetype plugin indent on
+
+" Opens an edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>e
+map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" Opens a tab edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>t
+map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
+
+" Inserts the path of the currently edited file into a command
+" Command mode: Ctrl+P
+cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+" Unimpaired configuration
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" Enable syntastic syntax checking
+let g:syntastic_enable_signs=1
+let g:syntastic_quiet_warnings=1
+
+" Gundo Stuff
+:map <F5> :GundoToggle<CR>
+:let g:gundo_preview_bottom = 1
+:let g:gundo_preview_height=25
+
+" gist-vim defaults
+if has("mac")
+  let g:gist_clip_command = 'pbcopy'
+elseif has("unix")
+  let g:gist_clip_command = 'xclip -selection clipboard'
+endif
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+
+" Use modeline overrides
+set modeline
+set modelines=10
+
+" Directories for swp files
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
+
+" Turn off jslint errors by default
+let g:JSLintHighlightErrorLine = 0
+
+" MacVIM shift+arrow-keys behavior (required in .vimrc)
+let macvim_hig_shift_movement = 1
+
+" % to bounce from do to end etc.
+runtime! macros/matchit.vim
+
+" Include user's local vim config
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
+" Custom mappings
 :map <F2> :set nowrap! <CR>
 :map <F3> :set number! <CR>
 :map <F4> :set paste! <CR>
-:map <F5> :CommandTFlush <CR>
-:map ,n :NERDTreeToggle<CR>
-:map ,t :CommandT<CR>
-:map ,b :LustyJuggler<CR>
-:map ,w :w<CR>
-:map ,q :q<CR>
-:map ,wq :wq<CR>
-noremap <Left>  <NOP>
-noremap <Up>    <NOP>
-noremap <Down>  <NOP>
-noremap <Right>  <NOP>
 vmap <C-k> [egv
 vmap <C-j> ]egv
 nmap <C-k> [e
 nmap <C-j> ]e
 nmap gV '[v`]
-cmap W w
+map <Leader>gs :Gstatus <CR>
+map <Leader>gc :Gcommit <CR>
+
+" Status bar
+set laststatus=2
+set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)\ \ %{fugitive#statusline()}%)

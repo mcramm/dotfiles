@@ -1,109 +1,79 @@
 " NOTE: You must, of course, install the ack script
 "       in your path.
-" On Ubuntu:
+" On Debian / Ubuntu:
 "   sudo apt-get install ack-grep
-"   ln -s /usr/bin/ack-grep /usr/bin/ack
+" On your vimrc:
+"   let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+"
 " With MacPorts:
 "   sudo port install p5-app-ack
 
-let g:ackprg="ack\\ -H\\ --nocolor\\ --nogroup"
+" Location of the ack utility
+if !exists("g:ackprg")
+	let g:ackprg="ack -H --nocolor --nogroup --column"
+endif
 
-function! Ackr(args)
-    let list = split(a:args)
-    let lastX = len(list)
-    let pathName = remove(list, lastX-1)
-    let origPath = $CURVESPACE.'/'.$CURVEPROJECT.'/'
-    if pathName == "model"
-        let fullPath = origPath."app/models"
-    elseif pathName == "widget"
-        let fullPath = origPath."public/javascripts/curve"
-    elseif pathName == "app"
-        let fullPath = origPath."app"
-    elseif pathName == "script"
-        let fullPath = origPath."public/javascripts"
-    elseif pathName == "views"
-        let fullPath = origPath."app/views"
-    elseif pathName == "cntr"
-        let fullPath = origPath."app/controllers"
-    elseif pathName == "script"
-        let fullPath = origPath."script"
-    elseif pathName == "test"
-        let fullPath = origPath."test"
-    elseif pathName == "hero"
-        let fullPath = origPath
+function! s:Ack(cmd, args)
+    redraw
+    echo "Searching ..."
+
+    " If no pattern is provided, search for the word under the cursor
+    if empty(a:args)
+        let l:grepargs = expand("<cword>")
     else
-        let fullPath = "."
+        let l:grepargs = a:args
+    end
+
+    " Format, used to manage column jump
+    if a:cmd =~# '-g$'
+        let g:ackformat="%f"
+    else
+        let g:ackformat="%f:%l:%c:%m"
+    end
+
+    let grepprg_bak=&grepprg
+    let grepformat_bak=&grepformat
+    try
+        let &grepprg=g:ackprg
+        let &grepformat=g:ackformat
+        silent execute a:cmd . " " . l:grepargs
+    finally
+        let &grepprg=grepprg_bak
+        let &grepformat=grepformat_bak
+    endtry
+
+    if a:cmd =~# '^l'
+        botright lopen
+    else
+        botright copen
     endif
-    let newArgs = join(list)
-    let str = newArgs . ' ' . fullPath
-    call Ack(str)
+
+    " TODO: Document this!
+    exec "nnoremap <silent> <buffer> q :ccl<CR>"
+    exec "nnoremap <silent> <buffer> t <C-W><CR><C-W>T"
+    exec "nnoremap <silent> <buffer> T <C-W><CR><C-W>TgT<C-W><C-W>"
+    exec "nnoremap <silent> <buffer> o <CR>"
+    exec "nnoremap <silent> <buffer> go <CR><C-W><C-W>"
+
+    " If highlighting is on, highlight the search keyword.
+    if exists("g:ackhighlight")
+        let @/=a:args
+        set hlsearch
+    end
+
+    redraw!
 endfunction
 
-function! Ack(args)
-    let winum=winnr()
-    let bufnum=winbufnr(winum)
-
-    let grepprg_bak=&grepprg
-    exec "set grepprg=" . g:ackprg
-    execute "silent! grep " . a:args
-    botright copen
-    let &grepprg=grepprg_bak
-    exec 'redraw!'
-    let curbuffnum=winbufnr(winum)
-
-    let qfwinnum=winnr()
-    exec winum . 'wincmd w'
-    exec 'buffer ' . bufnum
-    exec qfwinnum . 'wincmd w'
-    exec 'bd ' . curbuffnum
-    call HiPattern(a:args)
+function! s:AckFromSearch(cmd, args)
+    let search =  getreg('/')
+    " translate vim regular expression to perl regular expression.
+    let search = substitute(search,'\(\\<\|\\>\)','\\b','g')
+    call s:Ack(a:cmd, '"' .  search .'" '. a:args)
 endfunction
 
-function! HiPattern(args) 
-    let list = split(a:args)
-    let pattern=""
-    for nextval in list
-        if nextval[0] == "-"
-        else
-            if pattern == ""
-                let pattern=nextval
-            endif
-        endif
-    endfor
-
-    let g:ack_pattern=pattern
-endfunction
-
-function! AckAdd(args)
-    let grepprg_bak=&grepprg
-    exec "set grepprg=" . g:ackprg
-    execute "silent! grepadd " . a:args
-    botright copen
-    let &grepprg=grepprg_bak
-    exec "redraw!"
-endfunction
-
-function! LAck(args)
-    let grepprg_bak=&grepprg
-    exec "set grepprg=" . g:ackprg
-    execute "silent! lgrep " . a:args
-    botright lopen
-    let &grepprg=grepprg_bak
-    exec "redraw!"
-endfunction
-
-function! LAckAdd(args)
-    let grepprg_bak=&grepprg
-    exec "set grepprg=" . g:ackprg
-    execute "silent! lgrepadd " . a:args
-    botright lopen
-    let &grepprg=grepprg_bak
-    exec "redraw!"
-endfunction
-
-
-command! -nargs=* -complete=file Ack call Ack(<q-args>)
-command! -nargs=* -complete=file AckAdd call AckAdd(<q-args>)
-command! -nargs=* -complete=file LAck call LAck(<q-args>)
-command! -nargs=* -complete=file LAckAdd call LAckAdd(<q-args>)
-command! -nargs=* -complete=file Ackr call Ackr(<q-args>)
+command! -bang -nargs=* -complete=file Ack call s:Ack('grep<bang>',<q-args>)
+command! -bang -nargs=* -complete=file AckAdd call s:Ack('grepadd<bang>', <q-args>)
+command! -bang -nargs=* -complete=file AckFromSearch call s:AckFromSearch('grep<bang>', <q-args>)
+command! -bang -nargs=* -complete=file LAck call s:Ack('lgrep<bang>', <q-args>)
+command! -bang -nargs=* -complete=file LAckAdd call s:Ack('lgrepadd<bang>', <q-args>)
+command! -bang -nargs=* -complete=file AckFile call s:Ack('grep<bang> -g', <q-args>)
