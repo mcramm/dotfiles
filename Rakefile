@@ -1,30 +1,25 @@
 require 'rake'
 
 desc "move files to ~/"
-task :move_files do
-  %w[ oh-my-zsh my-config vim gitconfig zshrc ].each do |file|
-    dest = File.expand_path( "~/.#{file}" )
-    unless File.exist?(dest)
-      cp_r(File.expand_path("./#{file}"), dest)
+task :link_files do
+  %w(oh-my-zsh my-config vim gitconfig zshrc vimrc gvimrc).each do |file|
+    dest = File.expand_path("~/.#{file}")
+
+    if File.exist?(dest)
+      if File.identical?(file, dest)
+        puts "identical #{dest}"
+      else
+        puts "Overwrite #{dest}? [yn]"
+        case $stdin.gets.chomp
+        when 'y'
+          replace_file(file)
+        else
+          puts "skippping #{dest}"
+        end
+      end
+    else
+      link_file(file)
     end
-  end
-end
-
-desc "link vimrc to ~/.vimrc"
-task :link_vimrc do
-  file = "vimrc"
-  dest = File.expand_path("~/.#{file}")
-  unless File.exist?(dest)
-    ln_s(File.expand_path("~/.vim/vimrc"), dest)
-  end
-end
-
-desc "link gvimrc to ~/.gvimrc"
-task :link_gvimrc do
-  file = "gvimrc"
-  dest = File.expand_path("~/.#{file}")
-  unless File.exist?(dest)
-    ln_s(File.expand_path("~/.vim/gvimrc"), dest)
   end
 end
 
@@ -35,7 +30,19 @@ end
 
 task :default => [
   :update_submodules,
-  :move_files,
-  :link_vimrc,
-  :link_gvimrc
+  :link_files
 ]
+
+def replace_file(file)
+  puts "removing #{file}"
+
+  system %Q(rm -rf "$HOME/.#{file}")
+  link_file(file)
+end
+
+def link_file(file)
+  puts "linking ~/.#{file}"
+  subdir = %w(vimrc gvimrc).include?(file) ? "vim/" : ""
+
+  system %Q{ln -s "$PWD/#{subdir}#{file}" "$HOME/.#{file}"}
+end
