@@ -13,6 +13,7 @@ export PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/bin/gem:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
+#export PATH=$HOME/bin:$PATH
 # LS_COLORS
 #LS_COLORS="fi=0;36:di=34;1:ln=1;33:ec=\\e[0;37m:ex=1:mi=1;30:or=1;30:*.c=32:*.bz=32:*.txt=36;1:*.doc=37:*.zip=1;32:*.rar=1;32:*.lzh=1;32:*.lha=1;32:*.arj=1;32:*.tar=1;32:*.tgz=1;32:*.gz=1;32:*~=1;30:*.bak=1;30:*.jpg=1;35:*.gif=1;35:*.tif=1;35:*.tiff=1;35:*.mod=1;31:*.voc=1;31:*.smp=1;31:*.au=1;31:*.wav=1;31:*.s3m=1;31:*.xm=1;31:*.pl=1;33:*.c=1;33"
 #export LS_COLORS
@@ -40,7 +41,6 @@ alias mysqlp='mysql -uroot -p'
 alias cv="clear"
 alias h='history'
 alias history='history -10000'
-alias hg='history | grep'
 alias gr='grep -r'
 alias vr='view'
 alias ve='vi +'
@@ -55,6 +55,8 @@ alias passpack="gpg -d ~/.pass/pass.txt.gpg | grep -A3 'Passpack'"
 alias clearlog="echo '' > $CURVESPACE/$CURVEPROJECT/log/curvedev-$CURVEPROJECT-development.log"
 alias viewlog="view ${CURVESPACE}/${CURVEPROJECT}/log/curvedev-${CURVEPROJECT}-development.log"
 
+alias perms="sudo chmod -R 777 log test/tmp test/fixtures/public/ config/cache config/locales app/locales tmp public/data"
+
 fpath=(~/.fun $fpath)
 autoload -U ~/.fun/*(:t)
 
@@ -66,3 +68,4 @@ r() {
   autoload -U $f:t
   compinit
 }
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
