@@ -71,6 +71,7 @@
 :AckFile	ack.txt	/*:AckFile*
 :AckFromSearch	ack.txt	/*:AckFromSearch*
 :CommandT	command-t.txt	/*:CommandT*
+:CommandTBuffer	command-t.txt	/*:CommandTBuffer*
 :CommandTFlush	command-t.txt	/*:CommandTFlush*
 :Errors	syntastic.txt	/*:Errors*
 :LAck	ack.txt	/*:LAck*
@@ -358,6 +359,22 @@ conque_term-todo	conque_term.txt	/*conque_term-todo*
 conque_term-usage	conque_term.txt	/*conque_term-usage*
 cs	surround.txt	/*cs*
 ds	surround.txt	/*ds*
+extradite	extradite.txt	/*extradite*
+extradite-:Extradite	extradite.txt	/*extradite-:Extradite*
+extradite-<CR>	extradite.txt	/*extradite-<CR>*
+extradite-about	extradite.txt	/*extradite-about*
+extradite-author	extradite.txt	/*extradite-author*
+extradite-commands	extradite.txt	/*extradite-commands*
+extradite-dh	extradite.txt	/*extradite-dh*
+extradite-dt	extradite.txt	/*extradite-dt*
+extradite-dv	extradite.txt	/*extradite-dv*
+extradite-mappings	extradite.txt	/*extradite-mappings*
+extradite-oh	extradite.txt	/*extradite-oh*
+extradite-ot	extradite.txt	/*extradite-ot*
+extradite-ov	extradite.txt	/*extradite-ov*
+extradite-q	extradite.txt	/*extradite-q*
+extradite-t	extradite.txt	/*extradite-t*
+extradite.txt	extradite.txt	/*extradite.txt*
 ft-gitcommit-plugin	ft-gitcommit-plugin.txt	/*ft-gitcommit-plugin*
 fugitive	fugitive.txt	/*fugitive*
 fugitive#statusline()	fugitive.txt	/*fugitive#statusline()*
@@ -412,6 +429,7 @@ g:CommandTCursorRightMap	command-t.txt	/*g:CommandTCursorRightMap*
 g:CommandTCursorStartMap	command-t.txt	/*g:CommandTCursorStartMap*
 g:CommandTDeleteMap	command-t.txt	/*g:CommandTDeleteMap*
 g:CommandTMatchWindowAtTop	command-t.txt	/*g:CommandTMatchWindowAtTop*
+g:CommandTMatchWindowReverse	command-t.txt	/*g:CommandTMatchWindowReverse*
 g:CommandTMaxDepth	command-t.txt	/*g:CommandTMaxDepth*
 g:CommandTMaxFiles	command-t.txt	/*g:CommandTMaxFiles*
 g:CommandTMaxHeight	command-t.txt	/*g:CommandTMaxHeight*
@@ -432,6 +450,7 @@ g:SuperTabMappingTabLiteral	supertab.txt	/*g:SuperTabMappingTabLiteral*
 g:SuperTabNoCompleteAfter	supertab.txt	/*g:SuperTabNoCompleteAfter*
 g:SuperTabNoCompleteBefore	supertab.txt	/*g:SuperTabNoCompleteBefore*
 g:SuperTabRetainCompletionDuration	supertab.txt	/*g:SuperTabRetainCompletionDuration*
+g:extradite_width	extradite.txt	/*g:extradite_width*
 g:loaded_rails	rails.txt	/*g:loaded_rails*
 g:rails_abbreviations	rails.txt	/*g:rails_abbreviations*
 g:rails_ctags_arguments	rails.txt	/*g:rails_ctags_arguments*

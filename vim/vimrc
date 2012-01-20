@@ -21,9 +21,7 @@ set list listchars=tab:\ \ ,trail:·
 
 "syntax on
 syntax enable
-filetype on
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Searching
 set hlsearch
@@ -96,7 +94,7 @@ au FileType python  set tabstop=4 textwidth=79
 set backspace=indent,eol,start
 
 " load the plugin and indent settings for the detected filetype
-filetype plugin indent on
+"filetype plugin indent on
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
@@ -157,6 +155,12 @@ runtime! macros/matchit.vim
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
+
+" LustyJuggler
+map <Leader>, :LustyJuggler
+
+" YankRing
+nnoremap <silent> <Leader>yr :YRShow<CR>
 
 " Custom mappings
 :map <F2> :set nowrap! <CR>
