@@ -1,7 +1,6 @@
 [user]
 	email = GMCramm@gmail.com
 	name = mcramm
-
 [color]
 	ui = auto
 [color "branch"]
@@ -17,7 +16,6 @@
 	added = yellow
 	changed = green
 	untracked = cyan
-
 [alias]
 	st = status
 	ci = commit
@@ -25,7 +23,18 @@
 	co = checkout
 	df = diff
 	lg = log -p
+  l = log --oneline --decorate
+  m = merge
+  mff = merge --ff-only
+  mre = merge --no-ff
+  wc = whatchanged --oneline
 	unstage = reset HEAD --
 	last = log -1 HEAD
-    nl = log --pretty=format:'%h : %an(%ad) - %s' --graph --date=short
-    propermerge = merge --squash --ff-only --no-commit
+  nl = log --pretty=format:'%h : %an(%ad) - %s' --graph --date=short
+  lin = log --pretty=format:'%h : %an(%ad) - %s' --no-merges --date=short
+  linV = log --pretty=format:'%h : %an(%ad) - %s\n\t%b' --no-merges --date=short
+  propermerge = merge --squash --ff-only --no-commit
+[apply]
+	whitespace = fix
+[push]
+	default = tracking
