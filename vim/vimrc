@@ -109,10 +109,15 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)\ \ 
 " Running tests
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function! WriteFileAndEchoBuffer()
+  " Write the file
+  :w
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+endfunction
+
 function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    :w
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    call WriteFileAndEchoBuffer()
+    " Run tests for the given filename
     if match(a:filename, '\.feature$') != -1
         exec ":!bundle exec cucumber " . a:filename
     else
@@ -126,9 +131,29 @@ function! RunTests(filename)
     end
 endfunction
 
+function! RunAkelosTests(filename)
+    call WriteFileAndEchoBuffer()
+    " Run tests for the given filename
+
+    if match(a:filename, 'test\/unit') != -1
+      let da_file = substitute(a:filename, 'test\/unit\/', '', '')
+    else
+      let da_file = a:filename
+      " echo "is a prod file"
+    end
+
+    exec ":!script/test test/unit/" . da_file
+endfunction
+
 function! SetTestFile()
     " Set the spec file that tests will be run for.
     let t:grb_test_file=@%
+endfunction
+
+function! SetAkelosTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+    echo t:grb_test_file
 endfunction
 
 function! RunTestFile(...)
@@ -139,13 +164,18 @@ function! RunTestFile(...)
     endif
 
     " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
+    if filereadable("akelos/akelos")
+      call SetAkelosTestFile()
+      call RunAkelosTests(t:grb_test_file . command_suffix)
+    else
+      let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+      if in_test_file
+          call SetTestFile()
+      elseif !exists("t:grb_test_file")
+          return
+      end
+      call RunTests(t:grb_test_file . command_suffix)
     end
-    call RunTests(t:grb_test_file . command_suffix)
 endfunction
 
 function! RunNearestTest()
