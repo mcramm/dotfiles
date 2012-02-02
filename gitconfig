@@ -38,3 +38,5 @@
 	whitespace = fix
 [push]
 	default = tracking
+[github]
+  user = mcramm
