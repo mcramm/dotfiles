@@ -21,3 +21,4 @@ plugins=(git ruby postgres utils project)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function

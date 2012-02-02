@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/michaelcramm/projects/posts'
 let g:netrw_dirhist_2='/Users/michaelcramm/projects/issue_manager'
 let g:netrw_dirhist_3='/Users/michaelcramm/projects/ticketmaster-mingle'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/Users/michaelcramm/projects/javascript_fun/backbone_canv
 let g:netrw_dirhist_5='/Users/michaelcramm/projects/bugjournal'
 let g:netrw_dirhist_6='/Users/michaelcramm/projects/javascript_fun/crafty'
 let g:netrw_dirhist_7='/Users/michaelcramm/projects/javascript_fun/rpg?'
+let g:netrw_dirhist_8='/Users/michaelcramm/dotfiles/vim'
