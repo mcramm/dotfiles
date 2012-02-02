@@ -307,7 +307,7 @@ else
     hi Search        cterm=NONE ctermfg=grey ctermbg=blue
     hi MoreMsg       ctermfg=darkgreen
     hi ModeMsg       cterm=NONE ctermfg=brown
-    hi LineNr        ctermfg=3 ctermbg=3
+    hi LineNr        ctermfg=3
     hi Question      ctermfg=green
     hi StatusLine    cterm=bold,reverse
     hi StatusLineNC  cterm=reverse

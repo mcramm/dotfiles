@@ -2,7 +2,8 @@ call pathogen#infect()
 
 set nocompatible
 set t_Co=256
-colorscheme mike_wombat
+set background=light
+colorscheme solarized
 
 set number
 set ruler
@@ -32,20 +33,10 @@ set ignorecase
 set smartcase
 
 " Tab completion
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*
-
-
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
+set wildmenu
+set wildmode=longest,list
 
 let mapleader = ","
-
-" NERDTree configuration
-let NERDTreeIgnore=['\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
 
 " Command-T configuration
 :let g:CommandTMaxHeight=20
@@ -53,13 +44,6 @@ map <Leader>n :NERDTreeToggle<CR>
 :let g:CommandTMaxFiles=20000
 :map <C-T> :CommandT<CR>
 :map <D-T> :CommandT<CR>
-
-" ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
-
-" CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-map <C-\> :tnext<CR>
 
 " Remember last location in file
 if has("autocmd")
@@ -95,84 +79,22 @@ au FileType python  set tabstop=4 textwidth=79
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" load the plugin and indent settings for the detected filetype
-"filetype plugin indent on
-
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Unimpaired configuration
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
-
-" Enable syntastic syntax checking
-let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
-
-" Gundo Stuff
-:map <F5> :GundoToggle<CR>
-:let g:gundo_preview_bottom = 1
-:let g:gundo_preview_height=25
-
-" gist-vim defaults
-if has("mac")
-  let g:gist_clip_command = 'pbcopy'
-elseif has("unix")
-  let g:gist_clip_command = 'xclip -selection clipboard'
-endif
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-
 " Use modeline overrides
-set modeline
-set modelines=10
+" set modeline
+" set modelines=10
 
 " Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
-" Turn off jslint errors by default
-let g:JSLintHighlightErrorLine = 0
-
-" MacVIM shift+arrow-keys behavior (required in .vimrc)
-let macvim_hig_shift_movement = 1
-
 " % to bounce from do to end etc.
-runtime! macros/matchit.vim
-
-" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
-" LustyJuggler
-map <Leader>, :LustyJuggler
-
-" YankRing
-nnoremap <silent> <Leader>yr :YRShow<CR>
+" runtime! macros/matchit.vim
 
 " Custom mappings
 :map <F2> :set nowrap! <CR>
 :map <F3> :set number! <CR>
 :map <F4> :set paste! <CR>
-vmap <C-k> [egv
-vmap <C-j> ]egv
-nmap <C-k> [e
-nmap <C-j> ]e
-nmap gV '[v`]
+" nmap gV '[v`]
 map <Leader>gs :Gstatus <CR>
 map <Leader>gc :Gcommit <CR>
 
