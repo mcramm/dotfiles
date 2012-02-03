@@ -121,7 +121,9 @@ function! RunTests(filename)
     if match(a:filename, '\.feature$') != -1
         exec ":!bundle exec cucumber " . a:filename
     else
-        if filereadable("script/test")
+        if filereadable("akelos/akelos")
+            exec ":!script/test -u test/unit/" . substitute(a:filename, 'test\/unit\/', '', '')
+        elseif filereadable("script/test")
             exec ":!script/test " . a:filename
         elseif filereadable("Gemfile")
             exec ":!bundle exec rspec --color " . a:filename
@@ -131,29 +133,9 @@ function! RunTests(filename)
     end
 endfunction
 
-function! RunAkelosTests(filename)
-    call WriteFileAndEchoBuffer()
-    " Run tests for the given filename
-
-    if match(a:filename, 'test\/unit') != -1
-      let da_file = substitute(a:filename, 'test\/unit\/', '', '')
-    else
-      let da_file = a:filename
-      " echo "is a prod file"
-    end
-
-    exec ":!script/test test/unit/" . da_file
-endfunction
-
 function! SetTestFile()
     " Set the spec file that tests will be run for.
     let t:grb_test_file=@%
-endfunction
-
-function! SetAkelosTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-    echo t:grb_test_file
 endfunction
 
 function! RunTestFile(...)
@@ -164,18 +146,20 @@ function! RunTestFile(...)
     endif
 
     " Run the tests for the previously-marked file.
+
     if filereadable("akelos/akelos")
-      call SetAkelosTestFile()
-      call RunAkelosTests(t:grb_test_file . command_suffix)
+      call SetTestFile()
     else
+      " check for cucumber/rspec
       let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
       if in_test_file
           call SetTestFile()
       elseif !exists("t:grb_test_file")
           return
       end
-      call RunTests(t:grb_test_file . command_suffix)
     end
+
+    call RunTests(t:grb_test_file . command_suffix)
 endfunction
 
 function! RunNearestTest()
