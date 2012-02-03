@@ -109,20 +109,18 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)\ \ 
 " Running tests
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function! WriteFileAndEchoBuffer()
-  " Write the file
-  :w
-  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-endfunction
 
 function! RunTests(filename)
-    call WriteFileAndEchoBuffer()
+    " Write the file
+    :w
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+
     " Run tests for the given filename
     if match(a:filename, '\.feature$') != -1
         exec ":!bundle exec cucumber " . a:filename
     else
         if filereadable("akelos/akelos")
-            exec ":!script/test -u test/unit/" . substitute(a:filename, 'test\/unit\/', '', '')
+          exec ":!script/test -u test/unit/" . substitute(a:filename, 'test\/unit\/', '', '')
         elseif filereadable("script/test")
             exec ":!script/test " . a:filename
         elseif filereadable("Gemfile")
@@ -146,11 +144,9 @@ function! RunTestFile(...)
     endif
 
     " Run the tests for the previously-marked file.
-
     if filereadable("akelos/akelos")
       call SetTestFile()
     else
-      " check for cucumber/rspec
       let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
       if in_test_file
           call SetTestFile()
@@ -158,7 +154,6 @@ function! RunTestFile(...)
           return
       end
     end
-
     call RunTests(t:grb_test_file . command_suffix)
 endfunction
 
