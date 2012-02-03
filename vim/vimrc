@@ -2,8 +2,9 @@ call pathogen#infect()
 
 set nocompatible
 set t_Co=256
-set background=light
+set background=dark
 colorscheme solarized
+set cursorline
 
 set number
 set ruler
@@ -82,22 +83,17 @@ au FileType python  set tabstop=4 textwidth=79
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Use modeline overrides
-" set modeline
-" set modelines=10
-
 " Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
-
-" % to bounce from do to end etc.
-" runtime! macros/matchit.vim
 
 " Custom mappings
 :map <F2> :set nowrap! <CR>
 :map <F3> :set number! <CR>
 :map <F4> :set paste! <CR>
-" nmap gV '[v`]
+ nmap gV '[v`]
+" toggle background
+call togglebg#map("<F5>")
 map <Leader>gs :Gstatus <CR>
 map <Leader>gc :Gcommit <CR>
 
