@@ -18,6 +18,7 @@
 	untracked = cyan
 [alias]
 	st = status
+  aa = add .
 	ci = commit
 	br = branch
 	co = checkout
@@ -40,3 +41,5 @@
 	default = tracking
 [github]
   user = mcramm
+[core]
+	editor = /usr/bin/vim
