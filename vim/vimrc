@@ -97,7 +97,12 @@ set directory=~/.vim/backup
 " toggle background
 call togglebg#map("<F5>")
 map <Leader>gs :Gstatus <CR>
-map <Leader>gc :Gcommit <CR>
+nnoremap <Leader><leader> <c-^>
+
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts/curve<cr>
+map <leader>gt :CommandTFlush<cr>\|:CommandT test/
 
 "" GRB mappings
 " Map keys to go to specific files
