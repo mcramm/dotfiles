@@ -35,6 +35,11 @@
   lin = log --pretty=format:'%h : %an(%ad) - %s' --no-merges --date=short
   linV = log --pretty=format:'%h : %an(%ad) - %s\n\t%b' --no-merges --date=short
   propermerge = merge --squash --ff-only --no-commit
+  fp = fetch public
+  fo = fetch origin
+  aa = add .
+  ca = commit -a
+
 [apply]
 	whitespace = fix
 [push]
