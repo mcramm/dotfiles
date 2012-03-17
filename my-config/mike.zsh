@@ -38,16 +38,7 @@ alias ls="ls --color=always"
 alias lt='ls -ltrha'
 alias www='cd /var/www/'
 alias mysqlp='mysql -uroot -p'
-alias cv="clear"
-alias h='history'
 alias history='history -10000'
-alias gr='grep -r'
-alias vr='view'
-alias ve='vi +'
-alias mysql='mysql -uroot -p'
-alias duSort="du -ak |sort -nr | less"
-alias duSortH="du -ah |sort -nr | less"
-alias clp="clearProject"
 
 alias db='psql -U $CURVEPROJECT ${MIKE_PSQL_ARGS} $CURVEPROJECT'
 alias passwords="gpg -d ~/.pass/pass.txt.gpg | head -20"
