@@ -90,6 +90,7 @@ set directory=~/.vim/backup
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap K <nop>
 :map <F2> :set nowrap! <CR>
 :map <F3> :set number! <CR>
 :map <F4> :set paste! <CR>
@@ -103,6 +104,8 @@ map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
 map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts/curve<cr>
 map <leader>gt :CommandTFlush<cr>\|:CommandT test/
+map <C-j> 10j
+map <C-k> 10k
 
 "" GRB mappings
 " Map keys to go to specific files
