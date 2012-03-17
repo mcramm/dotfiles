@@ -40,23 +40,15 @@ alias www='cd /var/www/'
 alias mysqlp='mysql -uroot -p'
 alias history='history -10000'
 
+#############
+# Curve aliases
+#############
 alias db='psql -U $CURVEPROJECT ${MIKE_PSQL_ARGS} $CURVEPROJECT'
 alias passwords="gpg -d ~/.pass/pass.txt.gpg | head -20"
 alias passpack="gpg -d ~/.pass/pass.txt.gpg | grep -A3 'Passpack'"
 alias clearlog="echo '' > $CURVESPACE/$CURVEPROJECT/log/curvedev-$CURVEPROJECT-development.log"
 alias viewlog="view ${CURVESPACE}/${CURVEPROJECT}/log/curvedev-${CURVEPROJECT}-development.log"
-
 alias perms="sudo chmod -R 777 log test/tmp test/fixtures/public/ config/cache config/locales app/locales tmp public/data"
+#############
 
-fpath=(~/.fun $fpath)
-autoload -U ~/.fun/*(:t)
-
-## Reloads completion functions
-r() {
-  local f
-  f=(~/.fun/*(.))
-  unfunction $f:t 2> /dev/null
-  autoload -U $f:t
-  compinit
-}
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
