@@ -1,1 +1,3 @@
-au BufNewFile,BufRead *.mustache        setf mustache
+if has("autocmd")
+  au  BufNewFile,BufRead *.mustache,*.handlebars,*.hbs,*.hogan,*.hulk set filetype=mustache
+endif

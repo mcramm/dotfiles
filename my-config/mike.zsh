@@ -50,5 +50,3 @@ alias clearlog="echo '' > $CURVESPACE/$CURVEPROJECT/log/curvedev-$CURVEPROJECT-d
 alias viewlog="view ${CURVESPACE}/${CURVEPROJECT}/log/curvedev-${CURVEPROJECT}-development.log"
 alias perms="sudo chmod -R 777 log test/tmp test/fixtures/public/ config/cache config/locales app/locales tmp public/data"
 #############
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
