@@ -25,9 +25,6 @@
 [submodule "vim/bundle/ack.vim"]
 	path = vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "vim/bundle/vim-supertab"]
-	path = vim/bundle/vim-supertab
-	url = https://github.com/tsaleh/vim-supertab.git
 [submodule "vim/bundle/vim-pasta"]
 	path = vim/bundle/vim-pasta
 	url = https://github.com/sickill/vim-pasta.git
