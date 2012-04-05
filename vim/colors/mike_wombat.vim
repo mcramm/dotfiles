@@ -42,14 +42,13 @@ hi Search       ctermfg=230 ctermbg=236 guifg=#f6f3e8 guibg=#444444 gui=none
 " TODO
 hi Comment      ctermfg=244 guifg=#99968b gui=italic
 hi Todo         guifg=#8f8f8f gui=italic
-hi Constant     ctermfg=209 guifg=#e5786d gui=none
-hi String       ctermfg=112 guifg=#95e454 gui=italic
-"hi Identifier   ctermfg=155 guifg=#cae682 gui=none
-hi Identifier   ctermfg=146 guifg=#cae682 gui=none
-hi Function     ctermfg=221 guifg=#cae682 gui=none
-hi Type         ctermfg=156 guifg=#cae682 gui=none
+hi Constant     ctermfg=216 guifg=#e5786d gui=none
+hi String       ctermfg=118 guifg=#95e454 gui=italic
+hi Identifier   ctermfg=188 guifg=#cae682 gui=none
+hi Function     ctermfg=195 guifg=#cae682 gui=none
+hi Type         ctermfg=157 guifg=#cae682 gui=none
 hi Statement    ctermfg=45 guifg=#8ac6f2 gui=none
-hi Keyword      ctermfg=45 guifg=#8ac6f2 gui=none
-hi PreProc      ctermfg=203 guifg=#e5786d gui=none
-hi Number       ctermfg=221 guifg=#e5786d gui=none
+hi Keyword      ctermfg=117 guifg=#8ac6f2 gui=none
+hi PreProc      ctermfg=229 guifg=#e5786d gui=none
+hi Number       ctermfg=196 guifg=#e5786d gui=none
 hi Special      ctermfg=151 guifg=#e7f6da gui=none

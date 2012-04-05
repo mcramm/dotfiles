@@ -20,6 +20,7 @@
 	st = status
   aa = add .
 	ci = commit
+  civ = commit -v
 	br = branch
 	co = checkout
 	df = diff
@@ -39,6 +40,10 @@
   fo = fetch origin
   aa = add .
   ca = commit -a
+  mod = merge --ff-only origin/dev
+  mom = merge --ff-only origin/master
+  pod = pull --ff-only origin dev
+  pom = pull --ff-only origin master
 
 [apply]
 	whitespace = fix

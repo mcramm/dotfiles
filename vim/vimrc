@@ -6,7 +6,7 @@ set background=light
 colorscheme solarized
 set cursorline
 
-set number
+" set number
 set ruler
 syntax on
 
@@ -49,7 +49,7 @@ let mapleader = ","
 :map <C-T> :CommandT<CR>
 :map <D-T> :CommandT<CR>
 
-" Remember last location in file
+" Jump to the last line of code when re-opening the file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
@@ -63,20 +63,19 @@ endfunction
 
 function s:setupMarkup()
   call s:setupWrapping()
-  map <buffer> <Leader>p :Mm <CR>
+  map <buffer> <Leader>m :Mm <CR>
 endfunction
 
 " make uses real tabs
 au FileType make                                     set noexpandtab
 
 au BufRead,BufNewFile *.json    set ft=javascript
+au BufRead,BufNewFile *.{ejs,tpl} set ft=html
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
-
-au BufRead,BufNewFile *.txt call s:setupWrapping()
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
@@ -87,6 +86,47 @@ set backspace=indent,eol,start
 " Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Multipurpose tab key
+" Indent if we're at beginning of line, else, do completion
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+  let col = col('.') -1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Rename current file
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'))
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' .old_name
+    redraw!
+  endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Promote variable to rspec let
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
@@ -107,6 +147,8 @@ map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts/curve<cr>
 map <leader>gt :CommandTFlush<cr>\|:CommandT test/
 map <C-j> 10j
 map <C-k> 10k
+
+:nnoremap <CR> :nohlsearch<cr>
 
 "" GRB mappings
 " Map keys to go to specific files
