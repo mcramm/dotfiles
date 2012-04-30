@@ -1,0 +1,32 @@
+# Lines configured by zsh-newuser-install
+
+HISTFILE=~/.histfile
+HISTSIZE=10000000
+SAVEHIST=10000000
+PATH="/Library/Frameworks/Python.framework/Versions/Current/bin:${PATH}"
+
+setopt appendhistory extendedglob nomatch
+setopt CORRECT
+unsetopt autocd beep notify
+
+export PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/bin/gem:$PATH
+export PATH=/usr/local/mysql/bin:$PATH
+
+export SVN_EDITOR=vi
+
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/mike/.zshrc'
+
+
+autoload -Uz compinit
+compinit
+
+###########      Custom Aliases      ###########
+alias lt='ls -ltrha'
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
