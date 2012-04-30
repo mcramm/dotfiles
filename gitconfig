@@ -25,7 +25,10 @@
 	co = checkout
 	df = diff
 	lg = log -p
-  l = log --oneline --decorate
+  l = "!source ~/.githelpers && pretty_git_log"
+  la = !git l --all
+  r = !git l -30
+  ra = !git l -30 --all
   m = merge
   mff = merge --ff-only
   mre = merge --no-ff
