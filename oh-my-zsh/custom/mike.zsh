@@ -14,8 +14,6 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/bin/gem:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 
-export SVN_EDITOR=vi
-
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 # End of lines configured by zsh-newuser-install
