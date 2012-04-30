@@ -21,8 +21,6 @@ export PATH=/usr/local/mysql/bin:$PATH
 #[ -f /etc/DIR_COLORS ] && eval $(dircolors -b /etc/DIR_COLORS)
 #export ZLSCOLORS="${LS_COLORS}"
 export SVN_EDITOR=vi
-export SHAREDPATH='/home/mike/.my-config/super-shared'
-source ${SHAREDPATH}/.zshrc
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
@@ -47,15 +45,4 @@ alias viewlog="view ${CURVESPACE}/${CURVEPROJECT}/log/curvedev-${CURVEPROJECT}-d
 
 alias perms="sudo chmod -R 777 log test/tmp test/fixtures/public/ config/cache config/locales app/locales tmp public/data"
 
-fpath=(~/.fun $fpath)
-autoload -U ~/.fun/*(:t)
-
-## Reloads completion functions
-r() {
-  local f
-  f=(~/.fun/*(.))
-  unfunction $f:t 2> /dev/null
-  autoload -U $f:t
-  compinit
-}
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
