@@ -34,7 +34,6 @@ zstyle :compinstall filename '/home/mike/.zshrc'
 autoload -Uz compinit
 compinit
 ###########      Custom Aliases      ###########
-alias ls="ls --color=always"
 alias lt='ls -ltrha'
 alias www='cd /var/www/'
 alias mysqlp='mysql -uroot -p'
