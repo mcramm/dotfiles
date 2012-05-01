@@ -70,7 +70,7 @@ endfunction
 au FileType make                                     set noexpandtab
 
 au BufRead,BufNewFile *.json    set ft=javascript
-au BufRead,BufNewFile *.{ejs,tpl} set ft=html
+au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
