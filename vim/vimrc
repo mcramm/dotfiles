@@ -252,3 +252,8 @@ map <leader>T :call RunNearestTest()<cr>
 map <leader>a :call RunTests('')<cr>
 map <leader>c :w\|:!cucumber<cr>
 map <leader>w :w\|:!cucumber --profile wip<cr>
+
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+" " Can't be bothered to understand ESC vs <c-c> in insert mode
+imap <c-c> <esc>
