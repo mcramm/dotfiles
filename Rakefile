@@ -2,7 +2,7 @@ require 'rake'
 
 desc "move files to ~/"
 task :link_files do
-  %w(tmux.conf oh-my-zsh my-config vim gitconfig zshrc vimrc gvimrc).each do |file|
+  %w(tmux.conf oh-my-zsh vim gitconfig githelpers zshrc vimrc gvimrc).each do |file|
     dest = File.expand_path("~/.#{file}")
 
     if File.exist?(dest)

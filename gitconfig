@@ -1,55 +1,50 @@
 [user]
-	email = GMCramm@gmail.com
-	name = mcramm
+  email = gmcramm@gmail.com
+  name = Michael Cramm
 [color]
-	ui = auto
+  ui = auto
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-[color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+  current = yellow reverse
+  local = yellow
+  remote = green
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
 [alias]
-	st = status
+  st = status
   aa = add .
-	ci = commit
+  ci = commit
   civ = commit -v
-	br = branch
-	co = checkout
-	df = diff
-	lg = log -p
-  l = log --oneline --decorate
+  br = branch
+  co = checkout
+  di = diff
+  dc = diff --cached
+  head = !git l -1
+  h = !git head
+  l = "!source ~/.githelpers && pretty_git_log"
+  r = !git l -30
+  ra = !git l -30 --all
   m = merge
-  mff = merge --ff-only
-  mre = merge --no-ff
+  ff = merge --ff-only
+  noff = merge --no-ff
+  pff = pull --ff-only
   wc = whatchanged --oneline
-	unstage = reset HEAD --
-	last = log -1 HEAD
   nl = log --pretty=format:'%h : %an(%ad) - %s' --graph --date=short
-  lin = log --pretty=format:'%h : %an(%ad) - %s' --no-merges --date=short
-  linV = log --pretty=format:'%h : %an(%ad) - %s\n\t%b' --no-merges --date=short
-  propermerge = merge --squash --ff-only --no-commit
   fp = fetch public
   fo = fetch origin
-  aa = add .
-  ca = commit -a
-  mod = merge --ff-only origin/dev
+  fa = fetch --all
   mom = merge --ff-only origin/master
-  pod = pull --ff-only origin dev
   pom = pull --ff-only origin master
-
+  dh1 = diff HEAD~1
+  ; for curve
+  mod = merge --ff-only origin/dev
+  pod = pull --ff-only origin dev
+[merge]
+  tool = vimdiff
 [apply]
-	whitespace = fix
-[push]
-	default = tracking
+  whitespace = fix
 [github]
   user = mcramm
 [core]
-	editor = /usr/bin/vim
+  editor = /usr/bin/vim

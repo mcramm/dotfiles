@@ -2,7 +2,7 @@ call pathogen#infect()
 
 set nocompatible
 set t_Co=256
-set background=light
+set background=dark
 colorscheme solarized
 set cursorline
 
@@ -74,6 +74,7 @@ au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 
+au BufRead,BufNewFile *.{json} set ft=javascript
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 

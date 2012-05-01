@@ -1,1 +1,0 @@
-/home/shared/snippets/svn_snippets.vim
