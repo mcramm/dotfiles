@@ -16,7 +16,7 @@
   aa = add .
   ci = commit
   civ = commit -v
-  br = branch
+  b = branch
   co = checkout
   di = diff
   dc = diff --cached
@@ -30,13 +30,15 @@
   noff = merge --no-ff
   pff = pull --ff-only
   wc = whatchanged --oneline
-  nl = log --pretty=format:'%h : %an(%ad) - %s' --graph --date=short
   fp = fetch public
   fo = fetch origin
   fa = fetch --all
   mom = merge --ff-only origin/master
   pom = pull --ff-only origin master
   dh1 = diff HEAD~1
+  nl = "!echo 'dont use `git nl` anymore'"
+  br = "!echo 'dont use `git br` anymore'"
+
   ; for curve
   mod = merge --ff-only origin/dev
   pod = pull --ff-only origin dev
