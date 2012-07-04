@@ -137,8 +137,6 @@ nmap K <nop>
 :map <F3> :set number! <CR>
 :map <F4> :set paste! <CR>
  nmap gV '[v`]
-" toggle background
-call togglebg#map("<F5>")
 map <Leader>gs :Gstatus <CR>
 nnoremap <Leader><leader> <c-^>
 

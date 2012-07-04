@@ -28,9 +28,6 @@
 [submodule "vim/bundle/vim-pasta"]
 	path = vim/bundle/vim-pasta
 	url = https://github.com/sickill/vim-pasta.git
-[submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/vim-scratch"]
 	path = vim/bundle/vim-scratch
 	url = https://github.com/duff/vim-scratch.git
