@@ -73,6 +73,7 @@ au BufRead,BufNewFile *.json    set ft=javascript
 au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile *.{cljs}    set ft=clojure
 
 au BufRead,BufNewFile *.{json} set ft=javascript
 " md, markdown, and mk are markdown and define buffer-local preview
@@ -256,3 +257,5 @@ map <leader>w :w\|:!cucumber --profile wip<cr>
 imap <c-l> <space>=><space>
 " " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
+
+let g:slime_target = "tmux"

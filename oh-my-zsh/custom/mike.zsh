@@ -9,10 +9,17 @@ setopt appendhistory extendedglob nomatch
 setopt CORRECT
 unsetopt autocd beep notify
 
+#### CLOJURE-SCRIPT
+
+export CLOJURESCRIPT_HOME=/Users/michaelcramm/projects/clojurescript
+
+####
+
 export PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/bin/gem:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
+export PATH=$PATH:$CLOJURESCRIPT_HOME/bin
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
