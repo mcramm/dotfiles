@@ -67,4 +67,4 @@ endif
 set guioptions-=T
 
 " Default gui color scheme
-color Tomorrow-Night-Bright
+color cramm-dark

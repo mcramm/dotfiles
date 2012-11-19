@@ -2,13 +2,12 @@ call pathogen#infect()
 
 set nocompatible
 set t_Co=256
-set background=dark
-colorscheme Tomorrow-Night-Bright
-set cursorline
+colorscheme cramm-dark
 
-" set number
 set ruler
-syntax on
+syntax off
+
+syntax sync minlines=256
 
 " Set encoding
 set encoding=utf-8
@@ -26,9 +25,14 @@ set list listchars=tab:\ \ ,trail:·
 " Required to load rvm env in vim
 set shell=/bin/sh
 
-"syntax on
 syntax enable
 filetype plugin indent on
+
+" Make splits open on the right
+set splitright
+
+" Make laggy connections work fast
+set ttyfast
 
 " Searching
 set hlsearch
@@ -39,6 +43,7 @@ set smartcase
 " Tab completion
 set wildmenu
 set wildmode=longest,list
+set wildignore=*.jar,*.class
 
 let mapleader = ","
 
@@ -69,15 +74,28 @@ endfunction
 " make uses real tabs
 au FileType make                                     set noexpandtab
 
-au BufRead,BufNewFile *.json    set ft=javascript
+" Color clojure parans differently based on depth
+let g:vimclojure#ParenRainbow = 1
+
 au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
+
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 au BufRead,BufNewFile *.{cljs}    set ft=clojure
 
-au BufRead,BufNewFile *.{json} set ft=javascript
+au BufRead,BufNewFile *.{json,ts} set ft=javascript
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
+
+" spellchecking in mutt/text files
+au BufRead,BufNewFile ~/.mutt/temp*,*.txt set tw=72 noai noshowmatch
+au BufRead,BufNewFile ~/.mutt/temp*,*.txt setlocal spell spelllang=en_us
+au BufRead,BufNewFile ~/.mutt/temp*,*.txt syntax off
+" spellchecking in markdown
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setlocal spell spelllang=en_us
+" spellchecking in git commits
+au BufRead,BufNewFile *.git/COMMIT_EDITMSG set noai noshowmatch
+au BufRead,BufNewFile *.git/COMMIT_EDITMSG setlocal spell spelllang=en_us
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
@@ -119,78 +137,41 @@ endfunction
 map <leader>n :call RenameFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Promote variable to rspec let
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! PromoteToLet()
-  :normal! dd
-  :normal! P
-  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
-  :normal ==
-endfunction
-:command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make the 'K' key do nohing
 nmap K <nop>
-:map <F2> :set nowrap! <CR>
-:map <F3> :set number! <CR>
-:map <F4> :set paste! <CR>
- nmap gV '[v`]
-map <Leader>gs :Gstatus <CR>
-nnoremap <Leader><leader> <c-^>
 
+" Re-select the last visually selected block
+nmap gV '[v`]
+
+" Quickly switch back to the last opened file
+nnoremap <leader><leader> <c-^>
+
+" Scope CommandT to some common places
 map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
 map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT app/lib<cr>
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
 map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts/curve<cr>
 map <leader>gt :CommandTFlush<cr>\|:CommandT test/
-map <C-j> 10j
-map <C-k> 10k
-
-:nnoremap <CR> :nohlsearch<cr>
-
-"" GRB mappings
-" Map keys to go to specific files
-"
-map <leader>gr :topleft :split config/routes.rb<cr>
-function! ShowRoutes()
-  " Requires 'scratch' plugin
-  :topleft 100 :split __Routes__
-  " Make sure Vim doesn't write __Routes__ as a file
-  :set buftype=nofile
-  " Delete everything
-  :normal 1GdG
-  " Put routes output in buffer
-  :0r! rake -s routes
-  " Size window to number of lines (1 plus rake output length)
-  :exec ":normal " . line("$") . "_ "
-  " Move cursor to bottom
-  :normal 1GG
-  " Delete empty trailing line
-  :normal dd
-endfunction
-map <leader>gR :call ShowRoutes()<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets/sass<cr>
-map <leader>gf :CommandTFlush<cr>\|:CommandT features<cr>
-map <leader>gg :topleft 100 :split Gemfile<cr>
+
+" Flush and open CommandT
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
-nnoremap <leader><leader> <c-^>
+" Quicker jumping
+map <C-j> 10j
+map <C-k> 10k
+
+" Hit enter to clear the search highlight
+:nnoremap <CR> :nohlsearch<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Status bar
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)\ \ %{fugitive#statusline()}%)
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Running tests (GRB)
@@ -258,4 +239,5 @@ imap <c-l> <space>=><space>
 " " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 
-let g:slime_target = "tmux"
+
+set colorcolumn=80
