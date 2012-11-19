@@ -7,6 +7,7 @@
 let s:foreground = "eaeaea"
 let s:background = "000000"
 let s:selection = "424242"
+let s:matchingparen = "656565"
 let s:line = "2a2a2a"
 let s:comment = "969896"
 let s:red = "d54e53"
@@ -248,7 +249,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("MoreMsg", s:green, "", "")
 	call <SID>X("Question", s:green, "", "")
 	call <SID>X("WarningMsg", s:red, "", "")
-	call <SID>X("MatchParen", "", s:selection, "")
+	call <SID>X("MatchParen", "", s:matchingparen, "")
 	call <SID>X("Folded", s:comment, s:background, "")
 	call <SID>X("FoldColumn", "", s:background, "")
 	if version >= 700
