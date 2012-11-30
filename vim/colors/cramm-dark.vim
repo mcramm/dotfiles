@@ -54,4 +54,4 @@ hi Error		cterm=reverse		ctermfg=9	ctermbg=15
 hi Todo			cterm=bold,standout	ctermfg=16	ctermbg=11
 hi MatchParen		cterm=bold		ctermfg=16	ctermbg=250
 
-hi ColorColumn							ctermbg=255
+hi ColorColumn							ctermbg=233

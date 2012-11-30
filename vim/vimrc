@@ -63,7 +63,7 @@ endif
 function s:setupWrapping()
   set wrap
   set wm=2
-  set textwidth=72
+  set textwidth=80
 endfunction
 
 function s:setupMarkup()
