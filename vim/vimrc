@@ -43,16 +43,32 @@ set smartcase
 " Tab completion
 set wildmenu
 set wildmode=longest,list
-set wildignore=*.jar,*.class
 
 let mapleader = ","
 
-" Command-T configuration
-:let g:CommandTMaxHeight=20
-:let g:CommandTAlwaysShowDotFiles=1
-:let g:CommandTMaxFiles=20000
-:map <C-T> :CommandT<CR>
-:map <D-T> :CommandT<CR>
+set wildignore+=*.jar,*.class
+
+" Ctrl-P configuration
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<C-T>'
+let g:ctrlp_cmd = 'CtrlP'
+:map <D-T> :CtrlP<CR>
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_height = 20
+let g:ctrlp_max_files = 20000
+
+" Scope CtrlP to some common places
+map <leader>gm :CtrlPClearCache<cr>\|:CtrlP app/models<cr>
+map <leader>gc :CtrlPClearCache<cr>\|:CtrlP app/controllers<cr>
+map <leader>gl :CtrlPClearCache<cr>\|:CtrlP app/lib<cr>
+map <leader>gv :CtrlPClearCache<cr>\|:CtrlP app/views<cr>
+map <leader>gj :CtrlPClearCache<cr>\|:CtrlP public/javascripts<cr>
+map <leader>gt :CtrlPClearCache<cr>\|:CtrlP test/
+map <leader>gv :CtrlPClearCache<cr>\|:CtrlP app/views<cr>
+
+" Flush and open CommandT
+map <leader>f :CtrlPClearCache<cr>\|:CtrlP<cr>
 
 " Jump to the last line of code when re-opening the file
 if has("autocmd")
@@ -147,19 +163,6 @@ nmap gV '[v`]
 
 " Quickly switch back to the last opened file
 nnoremap <leader><leader> <c-^>
-
-" Scope CommandT to some common places
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT app/lib<cr>
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts/curve<cr>
-map <leader>gt :CommandTFlush<cr>\|:CommandT test/
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-
-" Flush and open CommandT
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 
 " Quicker jumping
 map <C-j> 10j
