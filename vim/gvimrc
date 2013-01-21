@@ -5,10 +5,10 @@ if has("gui_macvim")
   "remove audible/visual bell
   set vb
 
-  " Command-T for CommandT
+  " CtrlP for CtrlP
   macmenu &File.New\ Tab key=<D-T>
-  map <D-t> :CommandT<CR>
-  imap <D-t> <Esc>:CommandT<CR>
+  map <D-t> :CtrlP<CR>
+  imap <D-t> <Esc>:CtrlP<CR>
 
   " Command-Return for fullscreen
   macmenu Window.Toggle\ Full\ Screen\ Mode key=<D-CR>
@@ -66,6 +66,6 @@ endif
 " Start without the toolbar
 set guioptions-=T
 
-set background=light
+set background=dark
 " Default gui color scheme
-color solarized
+color badwolf

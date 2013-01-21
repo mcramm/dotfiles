@@ -2,10 +2,10 @@ call pathogen#infect()
 
 set nocompatible
 set t_Co=256
-colorscheme cramm-dark
+colorscheme badwolf
 
 set ruler
-syntax off
+syntax on
 
 syntax sync minlines=256
 
@@ -39,6 +39,9 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+" Use blowfish for encryption
+setlocal cm=blowfish
 
 " Tab completion
 set wildmenu
@@ -92,6 +95,7 @@ au FileType make                                     set noexpandtab
 
 " Color clojure parans differently based on depth
 let g:vimclojure#ParenRainbow = 1
+let vimclojure#FuzzyIndent = 1
 
 au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 
@@ -155,8 +159,11 @@ map <leader>n :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Make the 'K' key do nohing
-nmap K <nop>
+" Make W behave like w
+command! W write
+
+" Make the 'K' key join 
+nmap K -1J
 
 " Re-select the last visually selected block
 nmap gV '[v`]
