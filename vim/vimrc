@@ -94,8 +94,8 @@ endfunction
 au FileType make                                     set noexpandtab
 
 " Color clojure parans differently based on depth
-let g:vimclojure#ParenRainbow = 1
-let vimclojure#FuzzyIndent = 1
+" let g:vimclojure#ParenRainbow = 1
+" let vimclojure#FuzzyIndent = 1
 
 au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 
