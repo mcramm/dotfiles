@@ -49,7 +49,7 @@ set wildmode=longest,list
 
 let mapleader = ","
 
-set wildignore+=*.jar,*.class
+set wildignore+=*.jar,*.class,target/**
 
 " Ctrl-P configuration
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -96,6 +96,9 @@ au FileType make                                     set noexpandtab
 " Color clojure parans differently based on depth
 " let g:vimclojure#ParenRainbow = 1
 " let vimclojure#FuzzyIndent = 1
+
+" Align multi-line strings
+let g:clojure_align_multiline_strings = 1
 
 au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 
@@ -163,7 +166,7 @@ map <leader>n :call RenameFile()<cr>
 command! W write
 
 " Make the 'K' key join 
-nmap K -1J
+" nmap K -1J
 
 " Re-select the last visually selected block
 nmap gV '[v`]
@@ -250,4 +253,7 @@ imap <c-l> <space>=><space>
 imap <c-c> <esc>
 
 
+" Use clang for synastic and new c++11 stuff
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 set colorcolumn=80

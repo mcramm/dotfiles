@@ -49,6 +49,18 @@
 [submodule "vim/bundle/vim-foreplay"]
 	path = vim/bundle/vim-foreplay
 	url = git://github.com/tpope/vim-foreplay.git
+[submodule "vim/bundle/jshint.vim"]
+	path = vim/bundle/jshint.vim
+	url = https://github.com/walm/jshint.vim
+[submodule "vim/bundle/vim-fireplace"]
+	path = vim/bundle/vim-fireplace
+	url = git://github.com/tpope/vim-fireplace.git
 [submodule "vim/bundle/vim-classpath"]
 	path = vim/bundle/vim-classpath
 	url = git://github.com/tpope/vim-classpath.git
+[submodule "vim/bundle/paredit.vim"]
+	path = vim/bundle/paredit.vim
+	url = https://github.com/vim-scripts/paredit.vim
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
