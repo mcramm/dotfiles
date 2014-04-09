@@ -93,10 +93,6 @@ endfunction
 " make uses real tabs
 au FileType make                                     set noexpandtab
 
-" Color clojure parans differently based on depth
-" let g:vimclojure#ParenRainbow = 1
-" let vimclojure#FuzzyIndent = 1
-
 " Align multi-line strings
 let g:clojure_align_multiline_strings = 1
 
@@ -257,3 +253,9 @@ imap <c-c> <esc>
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 set colorcolumn=80
+
+" Rainbow parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
