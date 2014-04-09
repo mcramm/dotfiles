@@ -66,6 +66,6 @@ endif
 " Start without the toolbar
 set guioptions-=T
 
-set background=dark
+set background=light
 " Default gui color scheme
-color badwolf
+colorscheme solarized
