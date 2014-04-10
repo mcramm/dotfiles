@@ -1,0 +1,12 @@
+(ns rename)
+(require '[timl.file :as file])
+
+(defn rename-file []
+  (let [old-name (file/expand "%")
+        new-name (#*input "New file name: " old-name)]
+    (when-not (or (empty? new-name) (= new-name old-name))
+      (execute (str "saveas " new-name))
+      (execute (str "silent !rm " old-name))
+      (execute "redraw!"))))
+
+

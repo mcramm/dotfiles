@@ -142,18 +142,9 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Rename current file
+" Rename current file (see autoload/rename.tim)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'))
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' .old_name
-    redraw!
-  endif
-endfunction
-map <leader>n :call RenameFile()<cr>
+map <leader>n :call rename#rename_file()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
@@ -183,65 +174,10 @@ map <C-k> 10k
 set laststatus=2
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Running tests (GRB)
+" Running tests (see autoload/testing.tim)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RunTests(filename)
-    " Write the file
-    :w
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-
-    " Run tests for the given filename
-    if match(a:filename, '\.feature$') != -1
-        exec ":!bundle exec cucumber " . a:filename
-    else
-        if filereadable("akelos/akelos")
-          exec ":!script/test -u test/unit/" . substitute(a:filename, 'test\/unit\/', '', '')
-        elseif filereadable("script/test")
-            exec ":!script/test " . a:filename
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        else
-            exec ":!rspec --color " . a:filename
-        end
-    end
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
-
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-    " Run the tests for the previously-marked file.
-    if filereadable("akelos/akelos")
-      call SetTestFile()
-    else
-      let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-      if in_test_file
-          call SetTestFile()
-      elseif !exists("t:grb_test_file")
-          return
-      end
-    end
-    call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number)
-endfunction
-
-map <leader>t :call RunTestFile()<cr>
-map <leader>T :call RunNearestTest()<cr>
-map <leader>a :call RunTests('')<cr>
-map <leader>c :w\|:!cucumber<cr>
-map <leader>w :w\|:!cucumber --profile wip<cr>
+map <leader>t :call testing#run_tests()<cr>
+map <leader>a :call testing#run_all_tests()<cr>
 
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
