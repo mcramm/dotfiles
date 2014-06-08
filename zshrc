@@ -20,6 +20,8 @@ plugins=(git ruby postgres utils project)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
+# enable rbenv
+eval "$(rbenv init -)"
 
+# Customize to your needs...
 PATH=/usr/local/bin:$PATH
