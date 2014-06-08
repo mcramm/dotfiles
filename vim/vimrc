@@ -2,7 +2,8 @@ call pathogen#infect()
 
 set nocompatible
 set t_Co=256
-colorscheme badwolf
+set background=dark
+colorscheme solarized
 
 set ruler
 syntax on
