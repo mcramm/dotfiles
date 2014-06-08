@@ -22,7 +22,7 @@
   dc = diff --cached
   head = !git l -1
   h = !git head
-  l = !git log --graph --pretty='%C(yellow)%h%C(reset) %C(green)%ar%C(reset) %C(bold blue)%an%C(reset) %C(red)%d%C(reset) %s'
+  l = "!source ~/.githelpers && pretty_git_log"
   r = !git l -30
   ra = !git l -30 --all
   m = merge
