@@ -51,3 +51,5 @@
   user = mcramm
 [core]
   editor = /usr/bin/vim
+[credential]
+	helper = osxkeychain
