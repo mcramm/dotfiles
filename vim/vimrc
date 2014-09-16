@@ -2,7 +2,7 @@ call pathogen#infect()
 
 set nocompatible
 set t_Co=256
-set background=dark
+set background=light
 colorscheme solarized
 
 set ruler
@@ -22,6 +22,7 @@ set expandtab
 set autoindent
 set smartindent
 set list listchars=tab:\ \ ,trail:·
+set colorcolumn=80
 
 " Required to load rvm env in vim
 set shell=/bin/sh
@@ -310,7 +311,6 @@ imap <c-c> <esc>
 " Use clang for synastic and new c++11 stuff
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-set colorcolumn=80
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
