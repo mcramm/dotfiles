@@ -51,7 +51,7 @@ set wildmode=longest,list
 
 let mapleader = ","
 
-set wildignore+=*.jar,*.class,target/**
+set wildignore+=*.jar,*.class,target/**,app/client/node_modules/**
 
 " Ctrl-P configuration
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -307,10 +307,7 @@ imap <c-l> <space>=><space>
 " " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 
-
-" Use clang for synastic and new c++11 stuff
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+set colorcolumn=80
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
