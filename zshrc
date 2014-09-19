@@ -23,8 +23,14 @@ source $ZSH/oh-my-zsh.sh
 # enable rbenv
 eval "$(rbenv init -)"
 
+# . /path/to/z.sh
+. `brew --prefix`/etc/profile.d/z.sh
+
+archey -c
+
 # Customize to your needs...
 PATH=/usr/local/bin:$PATH
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+PATH=/usr/local/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/usr/local/Cellar/postgresql/9.3.4/bin:/usr/local/sbin:$PATH
