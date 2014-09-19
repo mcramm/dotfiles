@@ -12,6 +12,8 @@
   changed = green
   untracked = cyan
 [alias]
+  root = rev-parse --show-toplevel
+  currentbranch = rev-parse --abbrev-ref HEAD
   st = status
   aa = add .
   ci = commit
@@ -53,3 +55,5 @@
   editor = /usr/bin/vim
 [credential]
 	helper = osxkeychain
+[push]
+	default = simple
