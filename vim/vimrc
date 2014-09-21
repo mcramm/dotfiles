@@ -25,6 +25,8 @@ Plug 'vim-scripts/paredit.vim', { 'for': ['clojure'] }
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-abolish'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 
@@ -342,3 +344,10 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+" Multicursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-m>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
