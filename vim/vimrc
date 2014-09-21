@@ -1,4 +1,32 @@
-call pathogen#infect()
+call plug#begin('~/.vim/plugged')
+
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'mileszs/ack.vim'
+Plug 'sickill/vim-pasta'
+Plug 'duff/vim-scratch'
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
+Plug 'tpope/vim-rails', { 'for': ['ruby'] }
+Plug 'Lokaltog/vim-powerline'
+Plug 'groenewege/vim-less'
+Plug 'kien/ctrlp.vim'
+Plug 'walm/jshint.vim'
+
+Plug 'jpalardy/vim-slime', { 'for' : ['clojure'] }
+Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
+Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
+Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
+Plug 'vim-scripts/paredit.vim', { 'for': ['clojure'] }
+
+Plug 'altercation/vim-colors-solarized'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tpope/vim-abolish'
+
+call plug#end()
 
 set nocompatible
 set t_Co=256
