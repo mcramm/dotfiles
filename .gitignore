@@ -5,3 +5,5 @@ vim/tmp
 vim/.netrwhist
 vim/backup
 vim/plugged
+config/fish/fish_history
+config/fish/fishd.*
