@@ -35,7 +35,7 @@ replace_file() {
 }
 
 link_files() {
-	for file in tmux.conf oh-my-zsh gitconfig githelpers zshrc vim vimrc gvimrc inputrc
+	for file in tmux.conf oh-my-zsh gitconfig githelpers zshrc vim vimrc gvimrc inputrc config
 	do
 		dest="${HOME}/.${file}"
 
@@ -76,7 +76,7 @@ install_homebrew() {
 
 install_packages() {
   heading "Installing common packages"
-  brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build
+  brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build fish
   brew install macvim --override-system-vi --custom-icons --override-system-vim --with-lua --with-luajit
 
   /usr/libexec/PlistBuddy -c "Add :'Custom Color Presets':'Solarized Light' dict" ~/Library/Preferences/com.googlecode.iterm2.plist
