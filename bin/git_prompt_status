@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+INDEX=$(git status --porcelain 2> /dev/null)
+STATUS="✔"
+
+
+if $(echo "$INDEX" | grep '^.[MD] ' &> /dev/null); then
+    STATUS="✗"
+elif $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
+    STATUS="✗"
+fi
+
+echo -n $STATUS
