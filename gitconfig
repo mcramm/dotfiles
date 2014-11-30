@@ -28,6 +28,7 @@
   r = !git l -30
   ra = !git l -30 --all
   m = merge
+  p = push
   ff = merge --ff-only
   noff = merge --no-ff
   pff = pull --ff-only
