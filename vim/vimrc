@@ -25,7 +25,6 @@ Plug 'vim-scripts/paredit.vim', { 'for': ['clojure'] }
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-abolish'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
 
 call plug#end()
@@ -337,7 +336,7 @@ imap <c-l> <space>=><space>
 " " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 
-set colorcolumn=80
+set colorcolumn=110
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
