@@ -25,7 +25,6 @@ Plug 'vim-scripts/paredit.vim', { 'for': ['clojure'] }
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-abolish'
-Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 
