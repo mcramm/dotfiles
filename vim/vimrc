@@ -25,6 +25,9 @@ Plug 'vim-scripts/paredit.vim', { 'for': ['clojure'] }
 Plug 'altercation/vim-colors-solarized'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-abolish'
+Plug 'dag/vim-fish'
+
+Plug 'neo4j-contrib/cypher-vim-syntax'
 
 call plug#end()
 
