@@ -6,8 +6,6 @@ function prepend_to_path -d "Prepend the given dir to PATH if it exists and is n
     end
 end
 
-archey -c
-
 set -gx RBENV_ROOT /Users/michaelcramm/.rbenv
 . (rbenv init -|psub)
 
