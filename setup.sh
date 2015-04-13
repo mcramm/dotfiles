@@ -35,7 +35,7 @@ replace_file() {
 }
 
 link_files() {
-  for file in tmux.conf oh-my-zsh gitconfig githelpers zshrc vim vimrc gvimrc inputrc config
+  for file in tmux.conf oh-my-zsh gitconfig githelpers zshrc vim vimrc gvimrc inputrc config psqlrc
   do
     dest="${HOME}/.${file}"
 
