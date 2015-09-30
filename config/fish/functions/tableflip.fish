@@ -1,3 +1,3 @@
 function tableflip
-  echo -n '(╯°□°）╯︵ ┻━┻)' | pbcopy
+  echo -n '(╯°□°）╯︵ ┻━┻' | pbcopy
 end
