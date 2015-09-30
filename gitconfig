@@ -25,8 +25,8 @@
   head = !git l -1
   h = !git head
   l = "!source ~/.githelpers && pretty_git_log"
-  r = !git l -30
-  ra = !git l -30 --all
+  r = !git l -25
+  ra = !git l -25 --all
   m = merge
   p = push
   ff = merge --ff-only
@@ -53,8 +53,9 @@
 [github]
   user = mcramm
 [core]
-  editor = /usr/bin/vim
+  editor = /usr/local/bin/vim
+  excludesfile = /Users/michaelcramm/.gitignore
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [push]
-	default = simple
+  default = simple

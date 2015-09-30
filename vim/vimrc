@@ -23,18 +23,22 @@ Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
 Plug 'vim-scripts/paredit.vim', { 'for': ['clojure'] }
 
 Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'tpope/vim-abolish'
 Plug 'dag/vim-fish'
-
-Plug 'neo4j-contrib/cypher-vim-syntax'
+Plug 'rking/ag.vim'
+Plug 'mattn/emmet-vim'
+Plug 'sirver/UltiSnips'
 
 call plug#end()
 
 set nocompatible
 set t_Co=256
-set background=light
-colorscheme solarized
+set background=dark
+" colorscheme solarized
+let base16colorspace=256
+colorscheme base16-default
 
 set ruler
 syntax on
@@ -52,8 +56,9 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
-set list listchars=tab:\ \ ,trail:·
+set list listchars=tab:▸\ \,trail:·
 set colorcolumn=80
+set number
 
 " Required to load rvm env in vim
 set shell=/bin/sh
@@ -82,7 +87,8 @@ set wildmode=longest,list
 
 let mapleader = ","
 
-set wildignore+=*.jar,*.class,target/**,app/client/node_modules/**
+set wildignore+=*.jar,*.class,target/**,app/client/node_modules/**,node_modules/**
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|resources/public/js/compiled\|www'
 
 " Ctrl-P configuration
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -105,6 +111,9 @@ map <leader>gv :CtrlPClearCache<cr>\|:CtrlP app/views<cr>
 
 " Flush and open CommandT
 map <leader>f :CtrlPClearCache<cr>\|:CtrlP<cr>
+"
+" open CommandT Buffer
+map <leader>b :CtrlPBuffer<cr>
 
 " Jump to the last line of code when re-opening the file
 if has("autocmd")
@@ -134,6 +143,7 @@ au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 au BufRead,BufNewFile *.{cljs}    set ft=clojure
+au BufRead,BufNewFile *.{boot}    set ft=clojure
 
 au BufRead,BufNewFile *.{json,ts} set ft=javascript
 " md, markdown, and mk are markdown and define buffer-local preview
@@ -228,7 +238,7 @@ function! AlternateForCurrentFile()
   let new_file = current_file
   let in_spec = match(current_file, '^spec/') != -1
   let going_to_spec = !in_spec
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<helpers\>') != -1 || match(current_file, '\<core\>') != -1
   if going_to_spec
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
@@ -349,6 +359,26 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
 
 " Multicursors
 let g:multi_cursor_use_default_mapping=0
