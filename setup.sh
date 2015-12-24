@@ -2,7 +2,6 @@ print_seperator() {
   jot -b "=" $1 | xargs | tr -d ' '
 }
 
-
 heading() {
   print_seperator 20
   echo $1
@@ -81,24 +80,33 @@ install_packages() {
   heading "Installing common packages"
   brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build fish
   brew install macvim --override-system-vi --custom-icons --override-system-vim --with-lua --with-luajit
-
-  /usr/libexec/PlistBuddy -c "Add :'Custom Color Presets':'Solarized Light' dict" ~/Library/Preferences/com.googlecode.iterm2.plist
-  /usr/libexec/PlistBuddy -c "Merge 'iTerm2/Solarized Light.itermcolors' :'Custom Color Presets':'Solarized Light'" ~/Library/Preferences/com.googlecode.iterm2.plist
-  /usr/libexec/PlistBuddy -c "Add :'Custom Color Presets':'Solarized Dark' dict" ~/Library/Preferences/com.googlecode.iterm2.plist
-  /usr/libexec/PlistBuddy -c "Merge 'iTerm2/Solarized Dark.itermcolors' :'Custom Color Presets':'Solarized Dark'" ~/Library/Preferences/com.googlecode.iterm2.plist
+  brew install emacs-mac --with-spacemacs-icon
 }
 
 enable_zsh() {
   chsh -s $(which zsh)
 }
 
+enable_fish() {
+  chsh -s $(which fish)
+}
+
 install_ruby() {
   eval "$(rbenv init -)"
-  rbenv install 2.0.0-p481
-  rbenv global 2.0.0-p481
+  rbenv install 2.2.3
+  rbenv global 2.2.3
   rbenv rehash
   gem update --system
   gem install bundler
+}
+
+install_leiningen() {
+  local_bin=/usr/local/bin
+  install_path = "${local_bin}/lein"
+  mkdir -p ${local_bin}
+  wget -O ${install_path} https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+  chmod -x ${install_path}
+  echo "Leiningen installed to ${install_path}. Make sure it's in your path and run 'lein' to install clojure."
 }
 
 list_apps() {
@@ -106,7 +114,8 @@ list_apps() {
   print_seperator 20
   echo "Not ideal, but here is a list of apps to install."
   echo "Maybe one day I'll find a good way to automate some of this stuff. :-/\n"
-  link_to "Firefox" "http://www.mozilla.org/en-US/firefox/new/"
+  link_to "Iterm 2" "http://iterm2.com/downloads.html"
+  link_to "Firefox 30" "https://ftp.mozilla.org/pub/firefox/releases/30.0/mac/en-US/"
   link_to "Pentadactyl" "http://5digits.org/pentadactyl/"
   link_to "Chrome" "https://www.google.com/intl/en-CA/chrome/browser/"
   link_to "Postgres" "http://postgresapp.com/"
@@ -124,8 +133,9 @@ link_files
 
 install_homebrew
 install_packages
-enable_zsh
+enable_fish
 install_ruby
+install_leiningen
 list_apps
 
 echo "\nDone!"
