@@ -31,6 +31,8 @@ Plug 'rking/ag.vim'
 Plug 'mattn/emmet-vim'
 Plug 'sirver/UltiSnips'
 
+Plug 'janko-m/vim-test'
+
 call plug#end()
 
 set nocompatible
@@ -57,7 +59,7 @@ set expandtab
 set autoindent
 set smartindent
 set list listchars=tab:▸\ \,trail:·
-set colorcolumn=80
+set colorcolumn=110
 set number
 
 " Required to load rvm env in vim
@@ -278,81 +280,18 @@ function! ShowRoutes()
 endfunction
 map <leader>gR :call ShowRoutes()<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Running tests (copied from grb https://github.com/garybernhardt/dotfiles/blob/master/.vimrc)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>t :call RunTestFile()<cr>
-nnoremap <leader>T :call RunNearestTest()<cr>
-nnoremap <leader>a :call RunTests('')<cr>
+nmap <silent> <leader>T :TestNearest<CR>
+nmap <silent> <leader>t :TestFile<CR>
 
-function! RunTestFile(...)
-  if a:0
-    let command_suffix = a:1
-  else
-    let command_suffix = ""
-  endif
+"""""""""""""""""""
+" I don't use these yet...
+" nmap <silent> <leader>a :TestSuite<CR>
+" nmap <silent> <leader>l :TestLast<CR>
+" nmap <silent> <leader>g :TestVisit<CR>
+"""""""""""""""""""
 
-  " Run the tests for the previously-marked file.
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-  if in_test_file
-    call SetTestFile()
-  elseif !exists("t:grb_test_file")
-    return
-  end
-  call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-  let spec_line_number = line('.')
-  call RunTestFile(":" . spec_line_number)
-endfunction
-
-function! SetTestFile()
-  " Set the spec file that tests will be run for.
-  let t:grb_test_file=@%
-endfunction
-
-function! RunTests(filename)
-  " Write the file and run tests for the given filename
-  if expand("%") != ""
-    :w
-  end
-  if match(a:filename, '\.feature$') != -1
-    exec ":!script/features " . a:filename
-  else
-    " First choice: project-specific test script
-    if filereadable("script/test")
-      exec ":!script/test " . a:filename
-      " Fall back to the .test-commands pipe if available, assuming someone
-      " is reading the other side and running the commands
-    elseif filewritable(".test-commands")
-      let cmd = 'rspec --color --format progress --require "~/lib/vim_rspec_formatter" --format VimFormatter --out tmp/quickfix'
-      exec ":!echo " . cmd . " " . a:filename . " > .test-commands"
-
-      " Write an empty string to block until the command completes
-      sleep 100m " milliseconds
-      :!echo > .test-commands
-      redraw!
-      " Fall back to a blocking test run with Bundler
-    elseif filereadable("Gemfile")
-      if filereadable(".rspec-local")
-        exec ":!bundle exec rspec --options .rspec-local " . a:filename
-      else
-        exec ":!bundle exec rspec --color " . a:filename
-      end
-      " Fall back to a normal blocking test run
-    else
-      exec ":!rspec --color " . a:filename
-    end
-  end
-endfunction
-
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
 " " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
-
-set colorcolumn=110
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
@@ -369,7 +308,7 @@ let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['brown',       'firebrick3'],
     \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
+    \ ['yellow',       'SeaGreen3'],
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['Darkblue',    'firebrick3'],
     \ ['darkgreen',   'RoyalBlue3'],

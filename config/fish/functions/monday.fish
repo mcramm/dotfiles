@@ -1,3 +1,3 @@
 function monday
-  echo -n http://s.mlkshk-cdn.com/r/129O8 | pbcopy
+  echo -n http://i.imgur.com/eoK73Wo.gif | pbcopy
 end
