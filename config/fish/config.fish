@@ -22,4 +22,4 @@ prepend_to_path "/Applications/Postgres.app/Contents/Versions/9.3/bin"
 prepend_to_path "/usr/local/bin"
 prepend_to_path "$HOME/bin"
 
-eval sh "$HOME/Downloads/base16-shell/base16-default.dark.sh"
+eval sh "$HOME/Dropbox/base16-shell/base16-default.dark.sh"
