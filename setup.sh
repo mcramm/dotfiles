@@ -78,7 +78,8 @@ install_homebrew() {
 
 install_packages() {
   heading "Installing common packages"
-  brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build fish
+  brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build
+  brew install fish sbcl
   brew install macvim --override-system-vi --custom-icons --override-system-vim --with-lua --with-luajit
   brew install emacs-mac --with-spacemacs-icon
 }
@@ -126,6 +127,7 @@ list_apps() {
   link_to "CloudApp" "http://www.getcloudapp.com/"
   link_to "PCKeyboardHack" "https://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html.en"
   link_to "KeyRemap4Macbook" "https://pqrs.org/macosx/keyremap4macbook/"
+  link_to "Self Control" "http://selfcontrolapp.com/"
 }
 
 update_submodules
