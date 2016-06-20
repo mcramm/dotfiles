@@ -79,7 +79,8 @@ install_homebrew() {
 install_packages() {
   heading "Installing common packages"
   brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build
-  brew install fish sbcl
+  brew install rlwrap fish sbcl
+
   brew install macvim --override-system-vi --custom-icons --override-system-vim --with-lua --with-luajit
   brew install emacs-mac --with-spacemacs-icon
 }
