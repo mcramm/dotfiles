@@ -34,7 +34,7 @@ replace_file() {
 }
 
 link_files() {
-  for file in tmux.conf oh-my-zsh gitconfig githelpers zshrc vim vimrc gvimrc inputrc config psqlrc
+  for file in tmux.conf oh-my-zsh gitconfig githelpers zshrc vim vimrc gvimrc inputrc config psqlrc lein
   do
     dest="${HOME}/.${file}"
 
@@ -85,6 +85,10 @@ install_packages() {
 
   brew tap railwaycat/emacsmacport
   brew install emacs-mac --with-spacemacs-icon
+
+  brew install archey
+
+  brew install neovim/neovim/neovim
 }
 
 enable_zsh() {
@@ -128,8 +132,7 @@ list_apps() {
   link_to "Dash" "http://kapeli.com/dash"
   link_to "Dropbox" "https://www.dropbox.com/"
   link_to "CloudApp" "http://www.getcloudapp.com/"
-  link_to "PCKeyboardHack" "https://pqrs.org/macosx/keyremap4macbook/pckeyboardhack.html.en"
-  link_to "KeyRemap4Macbook" "https://pqrs.org/macosx/keyremap4macbook/"
+  link_to "Karabiner (formally KeyRemap4Macbook and PCKeyboardHack)" "https://pqrs.org/osx/karabiner/"
   link_to "Self Control" "http://selfcontrolapp.com/"
 }
 

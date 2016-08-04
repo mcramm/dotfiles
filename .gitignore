@@ -7,3 +7,5 @@ vim/backup
 vim/plugged
 config/fish/fish_history
 config/fish/fishd.*
+lein/repl-history
+lein/self-installs/
