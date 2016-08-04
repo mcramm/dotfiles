@@ -43,7 +43,7 @@ syntax enable
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " colorscheme solarized
 let base16colorspace=256
-colorscheme base16-default
+colorscheme base16-default-dark
 
 set background=dark
 
@@ -158,7 +158,6 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 " spellchecking in mutt/text files
 au BufRead,BufNewFile ~/.mutt/temp*,*.txt set tw=72 noai noshowmatch
 au BufRead,BufNewFile ~/.mutt/temp*,*.txt setlocal spell spelllang=en_us
-au BufRead,BufNewFile ~/.mutt/temp*,*.txt syntax off
 " spellchecking in markdown
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setlocal spell spelllang=en_us
 " spellchecking in git commits
@@ -208,6 +207,9 @@ map <leader>n :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Open help in a vertical split
+cnoremap help vert help
+
 " Make W behave like w
 command! W write
 
