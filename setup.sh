@@ -82,6 +82,8 @@ install_packages() {
   brew install rlwrap fish sbcl
 
   brew install macvim --override-system-vi --custom-icons --override-system-vim --with-lua --with-luajit
+
+  brew tap railwaycat/emacsmacport
   brew install emacs-mac --with-spacemacs-icon
 }
 
