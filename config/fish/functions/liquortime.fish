@@ -1,4 +1,4 @@
 function liquortime
-  echo -n 'https://pbs.twimg.com/tweet_video/CRVCgHBUEAAj-Vg.mp4' | pbcopy
+  echo -n 'http://i.imgur.com/RdRn48w.gifv' | pbcopy
 end
 

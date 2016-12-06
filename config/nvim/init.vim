@@ -30,7 +30,7 @@ Plug 'tpope/vim-abolish'
 Plug 'dag/vim-fish'
 Plug 'rking/ag.vim'
 Plug 'mattn/emmet-vim'
-" Plug 'sirver/UltiSnips'
+Plug 'sirver/UltiSnips'
 Plug 'janko-m/vim-test'
 
 Plug 'kassio/neoterm'
@@ -40,7 +40,7 @@ call plug#end()
 set nocompatible
 set t_Co=256
 syntax enable
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " colorscheme solarized
 let base16colorspace=256
 colorscheme base16-default-dark
@@ -121,6 +121,16 @@ map <leader>f :CtrlPClearCache<cr>\|:CtrlP<cr>
 " open CommandT Buffer
 map <leader>b :CtrlPBuffer<cr>
 
+" Uses git/hg to determine what files to look at for autocomplete
+" should prevent seeing files that have been git-ignored for example
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+
 " Jump to the last line of code when re-opening the file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -140,6 +150,9 @@ endfunction
 
 " make uses real tabs
 au FileType make                                     set noexpandtab
+
+" When switching between Makefiles and other code, ensure we're back to spaces.
+au FileType php                                      set expandtab
 
 " Align multi-line strings
 let g:clojure_align_multiline_strings = 1
@@ -163,6 +176,8 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setlocal spell spelllang=en
 " spellchecking in git commits
 au BufRead,BufNewFile *.git/COMMIT_EDITMSG set noai noshowmatch
 au BufRead,BufNewFile *.git/COMMIT_EDITMSG setlocal spell spelllang=en_us
+
+au BufRead,BufNewFile *.{java} set colorcolumn=100
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79

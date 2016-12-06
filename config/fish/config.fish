@@ -13,7 +13,7 @@ set -gx RBENV_ROOT /Users/michaelcramm/.rbenv
 set -gx ANDROID_HOME /Users/michaelcramm/projects/android/sdk
 set -gX JAVA_HOME (/usr/libexec/java_home)
 
-fish_vi_mode
+fish_vi_key_bindings
 
 prepend_to_path "$HOME/bin"
 prepend_to_path "/usr/local/heroku/bin"

@@ -5,5 +5,5 @@ function db
     set db 'postgres'
   end
 
-  psql -h localhost -U tether $db
+  psql -h localhost -U michaelcramm $db
 end
