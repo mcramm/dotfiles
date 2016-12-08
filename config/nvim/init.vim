@@ -43,7 +43,7 @@ syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " colorscheme solarized
 let base16colorspace=256
-colorscheme base16-default-dark
+colorscheme base16-default
 
 set background=dark
 
