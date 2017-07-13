@@ -7,10 +7,10 @@ function prepend_to_path -d "Prepend the given dir to PATH if it exists and is n
 end
 
 
-set -gx RBENV_ROOT /Users/michaelcramm/.rbenv
+set -gx RBENV_ROOT /Users/mikecramm/.rbenv
 . (rbenv init -|psub)
 
-set -gx ANDROID_HOME /Users/michaelcramm/projects/android/sdk
+# set -gx ANDROID_HOME /Users/michaelcramm/projects/android/sdk
 set -gx JAVA_HOME (/usr/libexec/java_home)
 
 fish_vi_key_bindings
