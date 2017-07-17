@@ -19,6 +19,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'walm/jshint.vim'
 Plug 'https://github.com/mxw/vim-jsx'
 Plug 'isRuslan/vim-es6'
+Plug 'terryma/vim-multiple-cursors'
 
 Plug 'jpalardy/vim-slime', { 'for' : ['clojure'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
@@ -336,11 +337,11 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 
 " Multicursors
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+" let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_next_key='<C-m>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<Esc>'
 
 let test#javascript#mocha#options = '--require test/helper'
 
