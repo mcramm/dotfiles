@@ -12,6 +12,8 @@ set -gx RBENV_ROOT /Users/mikecramm/.rbenv
 
 # set -gx ANDROID_HOME /Users/michaelcramm/projects/android/sdk
 set -gx JAVA_HOME (/usr/libexec/java_home)
+set -gx FZF_DEFAULT_COMMAND 'ag -g ""'
+set -gx FZF_CTRL_T_COMMAND $FZF_DEFAULT_COMMAND
 
 fish_vi_key_bindings
 

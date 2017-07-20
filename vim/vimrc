@@ -127,7 +127,7 @@ nmap <leader>b :call fzf#run({'source': reverse(<SNR>2_buflist()), 'sink': funct
 " map <leader>f :CtrlPClearCache<cr>\|:CtrlP<cr>
 "
 " open CommandT Buffer
-map <leader>b :CtrlPBuffer<cr>
+" map <leader>b :CtrlPBuffer<cr>
 
 " Jump to the last line of code when re-opening the file
 if has("autocmd")
