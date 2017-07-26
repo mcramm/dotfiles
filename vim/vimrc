@@ -11,13 +11,15 @@ Plug 'sickill/vim-pasta'
 Plug 'duff/vim-scratch'
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 Plug 'tpope/vim-rails', { 'for': ['ruby'] }
-Plug 'Lokaltog/vim-powerline'
+" Plug 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
 Plug 'groenewege/vim-less'
 " Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'walm/jshint.vim'
 Plug 'https://github.com/mxw/vim-jsx'
 Plug 'isRuslan/vim-es6'
+Plug 'terryma/vim-multiple-cursors'
 
 Plug 'jpalardy/vim-slime', { 'for' : ['clojure'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
@@ -97,7 +99,10 @@ set wildmode=longest,list
 let mapleader = ","
 
 set wildignore+=*.jar,*.class,target/**,app/client/node_modules/**,node_modules/**
-:map <C-T> :FZF<CR>
+nmap <C-T> :FZF<CR>
+nmap <leader>gm :FZF app/models<CR>
+nmap <leader>gv :FZF %:h<CR>
+nmap <leader>b :call fzf#run({'source': reverse(<SNR>2_buflist()), 'sink': function('<SNR>2_bufopen'), 'options': '+m', 'down': len(<SNR>2_buflist()) + 2 })<CR>
 
 " Jump to the last line of code when re-opening the file
 if has("autocmd")
@@ -141,6 +146,8 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setlocal spell spelllang=en
 " spellchecking in git commits
 au BufRead,BufNewFile *.git/COMMIT_EDITMSG set noai noshowmatch
 au BufRead,BufNewFile *.git/COMMIT_EDITMSG setlocal spell spelllang=en_us
+
+au BufRead,BufNewFile *.{coffee}    set colorcolumn=100
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
@@ -186,7 +193,7 @@ map <leader>n :call RenameFile()<cr>
 " Keymappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Open help in a vertical split
-cnoremap help vert help
+" cnoremap help vert help
 
 " Make W behave like w
 command! W write
@@ -264,6 +271,7 @@ function! ShowRoutes()
 endfunction
 map <leader>gR :call ShowRoutes()<cr>
 
+" nmap <silent> <leader>t :silent !tmux send-keys -t right 'be rspec %' C-m<CR>
 nmap <silent> <leader>T :TestNearest<CR>
 nmap <silent> <leader>t :TestFile<CR>
 
@@ -304,12 +312,14 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 
 " Multicursors
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+" let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_next_key='<C-m>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<Esc>'
 
 let test#javascript#mocha#options = '--require test/helper'
 
 let g:jsx_ext_required = 0
+let g:airline_section_y=''
+let g:airline_section_z=''
