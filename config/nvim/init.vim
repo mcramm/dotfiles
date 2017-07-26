@@ -13,7 +13,7 @@ Plug 'Lokaltog/vim-powerline'
 Plug 'groenewege/vim-less'
 Plug 'kien/ctrlp.vim'
 
-Plug 'jpalardy/vim-slime', { 'for' : ['clojure'] }
+Plug 'jpalardy/vim-slime', { 'for' : ['lisp', 'clojure'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
@@ -43,7 +43,7 @@ syntax enable
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " colorscheme solarized
 let base16colorspace=256
-colorscheme base16-default
+colorscheme base16-default-dark
 
 set background=dark
 
@@ -156,6 +156,8 @@ au FileType php                                      set expandtab
 
 " Align multi-line strings
 let g:clojure_align_multiline_strings = 1
+
+let g:slime_target = "tmux"
 
 au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 

@@ -13,7 +13,8 @@ Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
 Plug 'tpope/vim-rails', { 'for': ['ruby'] }
 Plug 'Lokaltog/vim-powerline'
 Plug 'groenewege/vim-less'
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'walm/jshint.vim'
 Plug 'https://github.com/mxw/vim-jsx'
 Plug 'isRuslan/vim-es6'
@@ -32,10 +33,12 @@ Plug 'dag/vim-fish'
 Plug 'rking/ag.vim'
 Plug 'mattn/emmet-vim'
 Plug 'sirver/UltiSnips'
-" Plug 'bhurlow/vim-parinfer'
 Plug 'kovisoft/slimv'
 
 Plug 'janko-m/vim-test'
+
+Plug 'leafgarland/typescript-vim'
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
@@ -44,7 +47,7 @@ set t_Co=256
 set background=dark
 " colorscheme solarized
 let base16colorspace=256
-colorscheme base16-default
+colorscheme base16-default-dark
 
 set ruler
 syntax on
@@ -94,32 +97,7 @@ set wildmode=longest,list
 let mapleader = ","
 
 set wildignore+=*.jar,*.class,target/**,app/client/node_modules/**,node_modules/**
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|resources/public/js/compiled\|www'
-
-" Ctrl-P configuration
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_map = '<C-T>'
-let g:ctrlp_cmd = 'CtrlP'
-:map <D-T> :CtrlP<CR>
-
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_max_height = 20
-let g:ctrlp_max_files = 20000
-
-" Scope CtrlP to some common places
-map <leader>gm :CtrlPClearCache<cr>\|:CtrlP app/models<cr>
-map <leader>gc :CtrlPClearCache<cr>\|:CtrlP app/controllers<cr>
-map <leader>gl :CtrlPClearCache<cr>\|:CtrlP app/lib<cr>
-map <leader>gv :CtrlPClearCache<cr>\|:CtrlP app/views<cr>
-map <leader>gj :CtrlPClearCache<cr>\|:CtrlP public/javascripts<cr>
-map <leader>gt :CtrlPClearCache<cr>\|:CtrlP test/
-map <leader>gv :CtrlPClearCache<cr>\|:CtrlP app/views<cr>
-
-" Flush and open CommandT
-map <leader>f :CtrlPClearCache<cr>\|:CtrlP<cr>
-"
-" open CommandT Buffer
-map <leader>b :CtrlPBuffer<cr>
+:map <C-T> :FZF<CR>
 
 " Jump to the last line of code when re-opening the file
 if has("autocmd")

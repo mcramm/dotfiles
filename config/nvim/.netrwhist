@@ -1,9 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/michaelcramm/projects/tether-api/public'
-let g:netrw_dirhist_2='/Users/michaelcramm/om-tutorial/.git'
-let g:netrw_dirhist_3='/Users/michaelcramm/projects/tether-firebase-redux-spike'
-let g:netrw_dirhist_4='/Users/michaelcramm/projects/tether-firebase-redux-spike/src'
-let g:netrw_dirhist_5='/Users/michaelcramm/projects/tether-firebase-redux-spike/src/containers'
-let g:netrw_dirhist_6='/Users/michaelcramm/projects/tether-firebase-redux-spike/src'
-let g:netrw_dirhist_7='/Users/michaelcramm/projects/tether-firebase-redux-spike'
+let g:netrw_dirhist_cnt =0
