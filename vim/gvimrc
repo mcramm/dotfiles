@@ -69,3 +69,6 @@ set guioptions-=T
 set background=light
 " Default gui color scheme
 colorscheme solarized
+
+set macligatures
+set guifont=Fira\ Code:h12

@@ -1,0 +1,104 @@
+global !p
+## Note that you can do: 
+# from snippet_helpers import *
+## And add this function to ~/.vim/pythonx/snippet_helpers.py
+## See http://vimcasts.org/transcripts/67/en/ for more details
+def camel_to_kebob(string):
+		string = re.sub('(.)([A-Z][a-z]+)', r'\1-\2', string)
+		string = re.sub('(.)([0-9]+)', r'\1-\2', string)
+		return re.sub('([a-z0-9])([A-Z])', r'\1-\2', string).lower()
+endglobal
+
+snippet qtest
+QUnit.test('it ${1}', function(assert) {
+  ${2}
+});
+endsnippet
+
+snippet testcomponent
+import * as React from 'react';
+import { moduleForComponent } from 'test/utils/component';
+import * as td from 'testdouble';
+
+import ${1} from 'components/${2:`!p snip.rv = camel_to_kebob(t[1])`}';
+
+moduleForComponent('`!p snip.rv = camel_to_kebob(t[1])`', {
+  beforeEach(assert) {
+    this.someTestDouble = td.function();
+  },
+
+  afterEach() {
+    td.reset();
+  },
+}, function() {
+  const subject = (props: Partial<Properties> = {}) => {
+    const allProps: Properties = {
+      ${3},
+      ...props,
+    };
+
+    return context.renderShallow(<$1 {...allProps} />);
+  };
+
+  QUnit.test('it ${4}', function(assert) {
+    ${5};
+  });
+});
+endsnippet
+
+snippet qunitmod
+/* global QUnit */
+import ${1} from '${2}';
+
+const options: any = {
+  subject() {
+    return ;
+  },
+}
+
+QUnit.module('`!p snip.rv = camel_to_kebob(t[1])`', options, () => {
+  QUnit.test('it ', function (assert) {
+    ;
+  });
+});
+
+endsnippet
+
+snippet component
+class ${1} extends React.Component<${2:any}, ${3:undefined}> {
+  render() {
+    return (
+      <div>
+        ${4}
+      </div>
+    )
+  }
+}
+
+endsnippet
+
+snippet container
+import * as React from 'react';
+
+import { connectContainer } from 'store/redux-container';
+import $4 from '${5:components/`!p snip.rv = camel_to_kebob(t[4])`}';
+
+class ${1} extends React.Component<Properties, undefined> {
+  static mapState(state: App, props: PublicProperties): Partial<Properties> {
+    return {${2}};
+  }
+  static mapActions(): Partial<Propreties> {
+    return {${3}};
+  }
+
+  componentDidMount() {}
+
+  render() {
+    return (
+      <${4} />
+    )
+  }
+}
+
+export default connectContainer<PublicProperties, Properties>($1);
+endsnippet

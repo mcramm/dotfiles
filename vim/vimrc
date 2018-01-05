@@ -17,15 +17,22 @@ Plug 'groenewege/vim-less'
 " Plug 'kien/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'walm/jshint.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'https://github.com/mxw/vim-jsx'
 Plug 'isRuslan/vim-es6'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'jpalardy/vim-slime', { 'for' : ['clojure'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
 Plug 'vim-scripts/paredit.vim', { 'for': ['clojure'] }
+Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
+
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-repeat'
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
@@ -39,8 +46,10 @@ Plug 'kovisoft/slimv'
 
 Plug 'janko-m/vim-test'
 
-Plug 'leafgarland/typescript-vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 
 call plug#end()
 
@@ -134,7 +143,7 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set f
 au BufRead,BufNewFile *.{cljs}    set ft=clojure
 au BufRead,BufNewFile *.{boot}    set ft=clojure
 
-au BufRead,BufNewFile *.{json,ts} set ft=javascript
+au BufRead,BufNewFile *.{json} set ft=javascript
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
@@ -189,6 +198,11 @@ endfunction
 
 map <leader>n :call RenameFile()<cr>
 
+" UltiSnips Triggering
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwandTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -208,8 +222,10 @@ nmap gV '[v`]
 nnoremap <leader><leader> <c-^>
 
 " Quicker jumping
-map <C-j> 10j
-map <C-k> 10k
+vmap <C-j> 10j
+vmap <C-k> 10k
+nmap <C-j> 10j
+nmap <C-k> 10k
 
 " Hit enter to clear the search highlight
 :nnoremap <CR> :nohlsearch<cr>
@@ -323,3 +339,17 @@ let test#javascript#mocha#options = '--require test/helper'
 let g:jsx_ext_required = 0
 let g:airline_section_y=''
 let g:airline_section_z=''
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+let g:tsuquyomi_disable_default_mappings = 1
+nmap <C-]> :TsuquyomiDefinition<CR>
+
+" Typescript related mappings
+autocmd FileType qf wincmd J
+autocmd FileType typescript nmap <buffer> <Leader>e <Plug>(TsuquyomiRenameSymbol)
+autocmd FileType typescript nmap <buffer> <Leader>E <Plug>(TsuquyomiRenameSymbolC)
