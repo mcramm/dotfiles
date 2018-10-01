@@ -7,7 +7,7 @@ function prepend_to_path -d "Prepend the given dir to PATH if it exists and is n
 end
 
 
-set -gx RBENV_ROOT /Users/mikecramm/.rbenv
+set -gx RBENV_ROOT /Users/michaelcramm/.rbenv
 . (rbenv init -|psub)
 
 # set -gx ANDROID_HOME /Users/michaelcramm/projects/android/sdk
@@ -29,5 +29,12 @@ prepend_to_path "/usr/local/Cellar/postgresql/9.3.4/bin"
 prepend_to_path "/Applications/Postgres.app/Contents/Versions/9.3/bin"
 prepend_to_path "/usr/local/bin"
 prepend_to_path "$HOME/.roswell/bin"
+prepend_to_path "$HOME/.cargo/bin"
 
-eval sh "$HOME/Dropbox/base16-shell/base16-default.dark.sh"
+# I've changed this. Iterm will now send 'set-colors' when the default profile is launched
+# eval sh "$HOME/Dropbox/base16-shell/base16-default.dark.sh"
+
+eval (direnv hook fish)
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/michaelcramm/Downloads/google-cloud-sdk/path.fish.inc' ]; if type source > /dev/null; source '/Users/michaelcramm/Downloads/google-cloud-sdk/path.fish.inc'; else; . '/Users/michaelcramm/Downloads/google-cloud-sdk/path.fish.inc'; end; end

@@ -1,4 +1,4 @@
 function unacceptable
-  echo -n 'http://i.imgur.com/pu6cOuZ.jpg' | pbcopy
+  echo -n 'http://i.imgur.com/vjL65js.gif' | pbcopy
 end
 

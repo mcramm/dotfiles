@@ -1,3 +1,3 @@
 function fish_greeting
-  archey -c
+  archey --color --offline
 end

@@ -9,16 +9,26 @@ Plug 'tpope/vim-unimpaired'
 Plug 'mileszs/ack.vim'
 Plug 'sickill/vim-pasta'
 Plug 'duff/vim-scratch'
-Plug 'Lokaltog/vim-powerline'
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby'] }
+Plug 'tpope/vim-rails', { 'for': ['ruby'] }
+" Plug 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
 Plug 'groenewege/vim-less'
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'walm/jshint.vim'
+Plug 'https://github.com/mxw/vim-jsx'
+Plug 'isRuslan/vim-es6'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/vim-easy-align'
 
 Plug 'jpalardy/vim-slime', { 'for' : ['lisp', 'clojure'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
 Plug 'tpope/vim-classpath', { 'for': ['clojure'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure'] }
 Plug 'vim-scripts/paredit.vim', { 'for': ['clojure'] }
-Plug 'guns/vim-clojure-highlight'
+Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
+
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-repeat'
@@ -33,19 +43,41 @@ Plug 'mattn/emmet-vim'
 Plug 'sirver/UltiSnips'
 Plug 'janko-m/vim-test'
 
-Plug 'kassio/neoterm'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'Valloric/YouCompleteMe'
+
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/denite.nvim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'roxma/nvim-completion-manager'
+" Plug 'Shougo/echodoc.vim'
 
 call plug#end()
 
+""""""""""""""""""""""""""""""""""
+" LanguageClient config start
+""""""""""""""""""""""""""""""""
+set hidden
+
+let g:LanguageClient_serverCommands = {}
+
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+""""""""""""""""""""""""""""""""""
+" LanguageClient config end
+""""""""""""""""""""""""""""""""""
+
 set nocompatible
 set t_Co=256
-syntax enable
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set background=dark
 " colorscheme solarized
 let base16colorspace=256
 colorscheme base16-default-dark
-
-set background=dark
 
 set ruler
 syntax on
@@ -70,6 +102,7 @@ set number
 " Required to load rvm env in vim
 set shell=/bin/sh
 
+syntax enable
 filetype plugin indent on
 
 " Make splits open on the right
@@ -151,13 +184,8 @@ endfunction
 " make uses real tabs
 au FileType make                                     set noexpandtab
 
-" When switching between Makefiles and other code, ensure we're back to spaces.
-au FileType php                                      set expandtab
-
 " Align multi-line strings
 let g:clojure_align_multiline_strings = 1
-
-let g:slime_target = "tmux"
 
 au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 
@@ -166,7 +194,7 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set f
 au BufRead,BufNewFile *.{cljs}    set ft=clojure
 au BufRead,BufNewFile *.{boot}    set ft=clojure
 
-au BufRead,BufNewFile *.{json,ts} set ft=javascript
+au BufRead,BufNewFile *.{json} set ft=javascript
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
@@ -179,7 +207,7 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} setlocal spell spelllang=en
 au BufRead,BufNewFile *.git/COMMIT_EDITMSG set noai noshowmatch
 au BufRead,BufNewFile *.git/COMMIT_EDITMSG setlocal spell spelllang=en_us
 
-au BufRead,BufNewFile *.{java} set colorcolumn=100
+au BufRead,BufNewFile *.{coffee}    set colorcolumn=100
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
@@ -221,11 +249,16 @@ endfunction
 
 map <leader>n :call RenameFile()<cr>
 
+" UltiSnips Triggering
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwandTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Open help in a vertical split
-cnoremap help vert help
+" cnoremap help vert help
 
 " Make W behave like w
 command! W write
@@ -240,8 +273,10 @@ nmap gV '[v`]
 nnoremap <leader><leader> <c-^>
 
 " Quicker jumping
-map <C-j> 10j
-map <C-k> 10k
+vmap <C-j> 10j
+vmap <C-k> 10k
+nmap <C-j> 10j
+nmap <C-k> 10k
 
 " Hit enter to clear the search highlight
 :nnoremap <CR> :nohlsearch<cr>
@@ -303,6 +338,7 @@ function! ShowRoutes()
 endfunction
 map <leader>gR :call ShowRoutes()<cr>
 
+" nmap <silent> <leader>t :silent !tmux send-keys -t right 'be rspec %' C-m<CR>
 nmap <silent> <leader>T :TestNearest<CR>
 nmap <silent> <leader>t :TestFile<CR>
 
@@ -343,12 +379,20 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 
 " Multicursors
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+" let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_next_key='<C-m>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<Esc>'
 
 let test#javascript#mocha#options = '--require test/helper'
 
 let g:jsx_ext_required = 0
+let g:airline_section_y=''
+let g:airline_section_z=''
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

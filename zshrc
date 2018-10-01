@@ -26,7 +26,7 @@ eval "$(rbenv init -)"
 # . /path/to/z.sh
 . `brew --prefix`/etc/profile.d/z.sh
 
-archey -c
+# archey -c
 
 # Customize to your needs...
 PATH=/usr/local/bin:$PATH

@@ -1,3 +1,3 @@
 function simpleserver
-  ruby -run -e httpd . --port=4001
+  ruby -run -e httpd . --port=9966
 end
