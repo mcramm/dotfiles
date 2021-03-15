@@ -46,7 +46,7 @@ Plug 'kovisoft/slimv'
 
 Plug 'janko-m/vim-test'
 
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
@@ -357,3 +357,7 @@ nmap <C-]> :TsuquyomiDefinition<CR>
 autocmd FileType qf wincmd J
 autocmd FileType typescript nmap <buffer> <Leader>e <Plug>(TsuquyomiRenameSymbol)
 autocmd FileType typescript nmap <buffer> <Leader>E <Plug>(TsuquyomiRenameSymbolC)
+
+" Rust related mappings
+autocmd FileType rust nmap <silent> <leader>r :RustRun<CR>
+autocmd FileType rust nmap <silent> <leader>f :RustFmt<CR>

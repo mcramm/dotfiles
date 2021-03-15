@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require "date"
+
+if ARGV.length > 0
+  now = Date.parse(ARGV.first)
+else
+  now = Date.today
+end
+
+# Find beginning of week (https://stackoverflow.com/a/6859418/240418)
+# now = Date.today
+sunday = now - now.wday
+sunday_date = sunday.strftime("%Y-%m-%d")
+
+query ="https://github.com/search?l=&q=repo%3Aclio%2Fidentity+repo%3Aclio%2Fgrow+repo%3Aclio%2Fthemis+is%3Apr+author%3Asafurabahrami+author%3Anathanchao+author%3Avbphan+author%3Amohsen3+author%3Avtruong74+archived%3Afalse+is%3Aclosed+closed%3A%3E#{sunday_date}&type=Issues"
+
+# puts query
+
+%x(open "#{query}")

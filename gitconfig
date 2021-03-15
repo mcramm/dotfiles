@@ -28,20 +28,21 @@
   r = !git l -25
   ra = !git l -25 --all
   m = merge
-  p = push
   ff = merge --ff-only
   noff = merge --no-ff
   pff = pull --ff-only
   wc = whatchanged --oneline
-  fp = fetch public
+  fu = fetch upstream
   fo = fetch origin
   fa = fetch --all
   mom = merge --ff-only origin/master
+  mum = merge --ff-only upstream/master
   pom = pull --ff-only origin master
+  pum = pull --ff-only upstream master
   dh1 = diff HEAD~1
   nl = "!echo 'dont use `git nl` anymore'"
   br = "!echo 'dont use `git br` anymore'"
-  rb = for-each-ref --sort=-committerdate --count=10 --format='%(refname:short)' refs/heads/
+  rb = for-each-ref --sort=-committerdate --count=20 --format='%(refname:short)' refs/heads/
 
   ; for curve
   mod = merge --ff-only origin/dev
@@ -60,4 +61,12 @@
 [push]
   default = simple
 [commit]
-	gpgsign = true
+  gpgsign = true
+[user]
+  name = Michael Cramm
+  email = mike.cramm@clio.com
+	; signingKey = 0A30FC3DC880A501
+  signingKey = C0EC7F4A3F878F7C
+
+[github]
+  user = mcramm

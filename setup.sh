@@ -144,7 +144,7 @@ list_apps() {
   link_to "Self Control" "http://selfcontrolapp.com/"
 }
 
-update_submodules
+#update_submodules
 link_files
 
 install_homebrew

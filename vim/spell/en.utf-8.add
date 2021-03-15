@@ -24,3 +24,4 @@ handleless
 superluminal
 comradery
 Ramda
+Clio's data schema - how data is organized in the database - isn't trivial, which means the process by which we obfuscate that data isn't trivial. It is, in fact, very complicated, and requires background jobs that run for days at a time. I was working on a fix in a related area, and needed to know how this obfuscation process was working in order to ensure that I didn't break something. Screwing something up here could have serious consequences for the company.

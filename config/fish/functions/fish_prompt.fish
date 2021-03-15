@@ -18,10 +18,10 @@ function fish_prompt
   set_color magenta
   printf '%s' (whoami)
   set_color normal
-  printf ' at '
-  set_color yellow
-  printf '%s' (hostname -s)
-  set_color normal
+  # printf ' at '
+  # set_color yellow
+  # printf '%s' (hostname -s)
+  # set_color normal
   printf ' in '
   set_color normal
   printf '%s' (prompt_pwd)
