@@ -21,3 +21,9 @@ alias ll='ls -l'
 alias sl=ls # often screw this up
 
 alias afind='ack-grep -il'
+
+alias tab-color-reset='it2-tab-reset'
+alias tab-color-manage='it2-tab-color 5c3700'
+alias tab-color-grow='it2-tab-color 4a1919'
+alias tab-color-identity='it2-tab-color 325980'
+alias tab-color-cbs='it2-tab-color 173323'

@@ -22,6 +22,7 @@ Plug 'https://github.com/mxw/vim-jsx'
 Plug 'isRuslan/vim-es6'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-easy-align'
+Plug 'ruanyl/vim-gh-line'
 
 Plug 'jpalardy/vim-slime', { 'for' : ['clojure'] }
 Plug 'tpope/vim-fireplace', { 'for': ['clojure'] }
