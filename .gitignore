@@ -10,3 +10,5 @@ config/fish/fishd.*
 lein/repl-history
 lein/self-installs/
 boot/cache
+setup.log
+error.log
