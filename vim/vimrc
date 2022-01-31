@@ -45,7 +45,6 @@ Plug 'tpope/vim-abolish'
 Plug 'dag/vim-fish'
 Plug 'rking/ag.vim'
 Plug 'mattn/emmet-vim'
-Plug 'sirver/UltiSnips'
 
 Plug 'janko-m/vim-test'
 
@@ -201,11 +200,6 @@ function! RenameFile()
 endfunction
 
 map <leader>n :call RenameFile()<cr>
-
-" UltiSnips Triggering
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwandTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Keymappings
