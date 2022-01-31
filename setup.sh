@@ -145,13 +145,13 @@ list_apps() {
 }
 
 #update_submodules
-link_files
+# link_files
 
-install_homebrew
-install_packages
-enable_fish
-install_ruby
-install_leiningen
-list_apps
+# install_homebrew
+# install_packages
+# enable_fish
+# install_ruby
+# install_leiningen
+# list_apps
 
 echo "\nDone!"
