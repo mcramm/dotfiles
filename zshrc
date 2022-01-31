@@ -24,7 +24,7 @@ source $ZSH/oh-my-zsh.sh
 eval "$(rbenv init -)"
 
 # . /path/to/z.sh
-. `brew --prefix`/etc/profile.d/z.sh
+. `brew --prefix` /etc/profile.d/z.sh
 
 # archey -c
 

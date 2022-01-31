@@ -74,7 +74,7 @@ install_packages() {
   printf "${CLEAR_LINE}[1/X]   Installing common packages"
   printf "[1/X]   Installing common packages" > setup.log
   sudo apt-get update
-  sudo apt-get install vim neovim zsh tmux silversearcher-ag gpg git rbenv ruby-build rlwrap > setup.log 2>error.log
+  sudo apt-get install vim neovim zsh tmux silversearcher-ag gpg git rbenv ruby-build rlwrap
 }
 
 enable_zsh() {
