@@ -93,11 +93,9 @@ install_packages() {
   printf "${CLEAR_LINE}[1/X]   Installing common packages"
   printf "[1/X]   Installing common packages" > setup.log
   brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build \
-               rlwrap fish sbcl python postgres archey neovim/neovim/neovim > setup.log 2> error.log
+               rlwrap fish sbcl python postgres archey > setup.log 2> error.log
 
   brew install macvim --override-system-vi --custom-icons --override-system-vim --with-lua --with-luajit > setup.log 2> error.log
-
-  pip install neovim > setup.log 2> error.log
 }
 
 enable_zsh() {
