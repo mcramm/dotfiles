@@ -74,16 +74,7 @@ install_packages() {
   printf "${CLEAR_LINE}[1/X]   Installing common packages"
   printf "[1/X]   Installing common packages" > setup.log
   sudo apt-get update
-  sudo apt-get install zsh tmux silversearcher-ag gpg git rbenv ruby-build rlwrap > setup.log 2>error.log
-}
-
-install_nvim() {
-  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-  chmod u+x nvim.appimage
-  ./nvim.appimage --appimage-extract
-  sudo mv squashfs-root /
-  sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
-  nvim --version
+  sudo apt-get install vim neovim zsh tmux silversearcher-ag gpg git rbenv ruby-build rlwrap > setup.log 2>error.log
 }
 
 enable_zsh() {
@@ -93,6 +84,5 @@ enable_zsh() {
 update_submodules
 link_files
 install_packages
-install_nvim
 enable_zsh
 
