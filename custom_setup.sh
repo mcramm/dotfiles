@@ -93,13 +93,11 @@ install_packages() {
   printf "${CLEAR_LINE}[1/X]   Installing common packages"
   printf "[1/X]   Installing common packages" > setup.log
   brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build \
-               rlwrap fish sbcl python postgres archey > setup.log 2> error.log
-
-  brew install macvim --override-system-vi --custom-icons --override-system-vim --with-lua --with-luajit > setup.log 2> error.log
+               rlwrap fish sbcl python postgres archey
 }
 
 enable_zsh() {
-  chsh -s $(command -v zsh) > setup.log 2> error.log
+  chsh -s $(command -v zsh)
 }
 
 enable_fish() {
@@ -142,14 +140,15 @@ list_apps() {
   link_to "Self Control" "http://selfcontrolapp.com/"
 }
 
-#update_submodules
-# link_files
+update_submodules
+link_files
 
 # install_homebrew
-# install_packages
+install_packages
 # enable_fish
+enable_zsh
 # install_ruby
 # install_leiningen
-# list_apps
+list_apps
 
 echo "\nDone!"
