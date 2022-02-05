@@ -60,13 +60,11 @@
   helper = osxkeychain
 [push]
   default = simple
-[commit]
-  gpgsign = true
 [user]
   name = Michael Cramm
-  email = mike.cramm@clio.com
-	; signingKey = 0A30FC3DC880A501
-  signingKey = C0EC7F4A3F878F7C
+  email = mike@mcramm.com
 
 [github]
   user = mcramm
+[init]
+	defaultBranch = main
