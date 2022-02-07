@@ -71,6 +71,13 @@ install_packages() {
   sudo apt-get install -y vim neovim zsh tmux silversearcher-ag gpg git rbenv ruby-build rlwrap
 }
 
+setup_neovim() {
+  dest="${HOME}/.local/share/nvim/site/autoload"
+  mkdir -p $dest
+  cp vim/autoload/plug.vim $dest
+  nvim -c PlugInstall +qa
+}
+
 enable_zsh() {
   chsh -s $(command -v zsh) > setup.log 2> error.log
 }
@@ -78,5 +85,6 @@ enable_zsh() {
 update_submodules
 link_files
 install_packages
+setup_neovim
 enable_zsh
 
