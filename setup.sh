@@ -56,13 +56,7 @@ link_files() {
       if diff ${dest} ${file} > /dev/null ; then
         echo "Identcal file at ${dest}. Doing nothing." > setup.log
       else
-        printf "${CLEAR_LINE}${YELLOW}File exists at ${dest}.${NO_COLOR}\n"
-        printf "Overwrite? [y/N] "
-        read ANSWER
-
-        if [ "${ANSWER}" = "y" ]; then
-          replace_file $file $dest
-        fi
+        replace_file $file $dest
       fi
     else
       link_file $file $dest
