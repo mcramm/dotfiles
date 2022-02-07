@@ -68,10 +68,18 @@ install_packages() {
   printf "${CLEAR_LINE}[1/X]   Installing common packages"
   printf "[1/X]   Installing common packages" >> setup.log
   sudo apt-get update
-  sudo apt-get install -y vim neovim zsh tmux silversearcher-ag gpg git rbenv ruby-build rlwrap
+  sudo apt-get install -y vim zsh tmux silversearcher-ag gpg git rbenv ruby-build rlwrap
 }
 
 setup_neovim() {
+  printf "Installing neovim" >> setup.log
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  chmod u+x nvim.appimage
+  ./nvim.appimage --appimage-extract
+  sudo mv squashfs-root /
+  sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+
+  printf "Setting up neovim plugins" >> setup.log
   dest="${HOME}/.local/share/nvim/site/autoload"
   mkdir -p $dest
   cp vim/autoload/plug.vim $dest
