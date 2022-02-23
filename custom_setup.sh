@@ -93,7 +93,7 @@ install_packages() {
   printf "${CLEAR_LINE}[1/X]   Installing common packages"
   printf "[1/X]   Installing common packages" > setup.log
   brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build \
-               rlwrap fish sbcl python postgres archey
+               rlwrap fish sbcl python postgres archey ripgrep
 }
 
 enable_zsh() {
