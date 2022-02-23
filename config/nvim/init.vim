@@ -89,7 +89,8 @@ let g:lightline = {
 
 " fzf setup
 set wildignore+=*.jar,*.class,target/**,app/client/node_modules/**,node_modules/**
-nmap <C-T> :FZF<CR>
+nmap <C-T> :GFiles<CR>
+nmap <C-F> :Rg<CR>
 
 function s:setupWrapping()
   set wrap
