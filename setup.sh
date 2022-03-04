@@ -87,7 +87,12 @@ setup_neovim() {
 }
 
 enable_zsh() {
-  chsh -s $(command -v zsh) >> setup.log 2> error.log
+  sudo cp /etc/pam.d/chsh /etc/pam.d/chsh.bkp
+  sudo sed -i 's/required/sufficient/g' /etc/pam.d/chsh
+
+  chsh -s $(which zsh)
+
+  sudo mv /etc/pam.d/chsh.bkp /etc/pam.d/chsh
 }
 
 update_submodules
