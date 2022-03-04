@@ -36,7 +36,7 @@ prepend_to_path "$GOPATH/bin"
 prepend_to_path "$HOME/.nodenv/versions/10.9.0/bin"
 
 # I've changed this. Iterm will now send 'set-colors' when the default profile is launched
-# eval sh "$HOME/Dropbox/base16-shell/base16-default.dark.sh"
+# eval sh "$HOME/dotfiles/base16-shell/base16-default.dark.sh"
 
 eval (direnv hook fish)
 

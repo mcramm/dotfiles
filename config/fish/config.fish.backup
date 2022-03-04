@@ -30,6 +30,6 @@ prepend_to_path "/Applications/Postgres.app/Contents/Versions/9.3/bin"
 prepend_to_path "/usr/local/bin"
 prepend_to_path "$HOME/.roswell/bin"
 
-eval sh "$HOME/Dropbox/base16-shell/base16-default.dark.sh"
+eval sh "$HOME/dotfiles/base16-shell/base16-default.dark.sh"
 
 eval (direnv hook fish)
