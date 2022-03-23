@@ -88,10 +88,10 @@ let g:lightline = {
   \'colorscheme': 'codedark',
   \}
 
-" fzf setup
+" FZF setup
 set wildignore+=*.jar,*.class,target/**,app/client/node_modules/**,node_modules/**
 nmap <C-T> :GFiles<CR>
-nmap <C-F> :Rg<CR>
+" nmap <C-F> :Rg<CR>
 
 function s:setupWrapping()
   set wrap
