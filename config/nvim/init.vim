@@ -20,6 +20,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'ruanyl/vim-gh-line'
 Plug 'sickill/vim-pasta'
 Plug 'janko-m/vim-test'
+Plug 'neomake/neomake'
 
 " Experimental plugins
 Plug 'szw/vim-maximizer'
@@ -260,3 +261,17 @@ nmap <silent> <leader>t :TestFile<CR>
 let test#strategy = "neovim"
 let test#neovim#term_position = "vertical"
 " let test#neovim#start_normal = 1 " If using neovim strategy - this will open the terminal in normal mode
+
+" Neomake
+nnoremap <Leader>8 :lopen<CR>tocmd! BufWritePost * Neomake
+let g:neomake_logfile = '/tmp/neomake.log'
+" let g:neomake_ruby_rubocop_exe=['bundle', 'exec', 'rubocop']
+let g:neomake_ruby_rubocop_exe='bundle'
+let g:neomake_ruby_rubocop_args=['exec', 'rubocop', '--format', 'emacs', "--cache", 'false', '--display-cop-names']
+let g:neomake_ruby_enabled_makers = ['mri', 'rubocop']
+let g:neomake_serialize = 1
+let g:neomake_serialize_abort_on_error = 1
+let g:neomake_open_list = 2
+" Full config: when writing or reading a buffer, and on changes in insert and
+" normal mode (after 500ms; no delay when writing).
+call neomake#configure#automake('nrwi', 500)
