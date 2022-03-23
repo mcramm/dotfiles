@@ -113,7 +113,7 @@ let g:clojure_align_multiline_strings = 1
 au BufRead,BufNewFile *.{ejs,hjs,tpl} set ft=html
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
+au BufRead,BufNewFile {Gemfile,Gemfile.next,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
 au BufRead,BufNewFile *.{cljs}    set ft=clojure
 au BufRead,BufNewFile *.{boot}    set ft=clojure
 
