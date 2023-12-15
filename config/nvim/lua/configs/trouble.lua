@@ -1,5 +1,6 @@
 require("trouble").setup({
-  position = "right",
-  auto_open = true,
+  position = "bottom",
+  auto_open = false,
   auto_close = true,
+  height = 6,
 })

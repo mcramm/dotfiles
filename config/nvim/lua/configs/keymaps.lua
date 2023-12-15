@@ -25,6 +25,14 @@ keymap("n", "<CR>", ":nohlsearch<CR>", opts)
 -- Quickly switch back to the last opened file
 keymap("n", "<leader><leader>", "<c-^>", opts)
 
+-- Copy the current file into the yank buffer
+keymap("n", "cpy", ':let @" = expand("%:r") .. "." .. expand("%:e")<cr>', opts)
+-- Copy the current file into the paste buffer
+keymap("n", "cpp", ':let @* = expand("%:r") .. "." .. expand("%:e")<cr>', opts)
+
+-- Open the current line in github
+keymap("n", "<leader>gh", ":GH<CR>", opts)
+
 -----------------------------------------------------------------------------
 -- Rename current file (copied from grb https://github.com/garybernhardt/dotfiles/blob/master/.vimrc)
 -----------------------------------------------------------------------------

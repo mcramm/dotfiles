@@ -12,7 +12,18 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+  -- Colorschemes
   { "tomasiser/vim-code-dark", lazy = true },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  { "catppuccin/nvim", name = "catppuccin", lazy = false, priority = 1000 },
+  { "rebelot/kanagawa.nvim", name = "kanagawa", lazy = false, priority = 1000 },
+  { "ellisonleao/gruvbox.nvim", name = "gruvbox", lazy = false, priority = 1000 },
+
   "tpope/vim-fugitive",
   "tpope/vim-commentary",
   "tpope/vim-endwise",
@@ -32,6 +43,8 @@ local plugins = {
   "nvim-tree/nvim-web-devicons",
   "nvim-lualine/lualine.nvim",
   "airblade/vim-gitgutter",
+  "github/copilot.vim",
+  "ruanyl/vim-gh-line",
 
   -- Clojure specific plugins
   { "tpope/vim-classpath", ft = "clj" },
@@ -63,3 +76,4 @@ require("lazy").setup(plugins, opts)
 
 vim.api.nvim_set_var("test#strategy", "neovim");
 vim.api.nvim_set_var("test#neovim#term_position", "vertical");
+vim.api.nvim_set_var("copilot_node_command", "~/.nodenv/versions/16.20.0/bin/node")
