@@ -57,6 +57,9 @@ local plugins = {
   { "guns/vim-sexp", ft = "clj" },
   { "Olical/conjure", ft = "clj" },
 
+  "vim-ruby/vim-ruby",
+  "tpope/vim-rails",
+
   -- Rust specific plugins
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
