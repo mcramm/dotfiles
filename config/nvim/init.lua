@@ -4,8 +4,10 @@ require("configs.colorscheme")
 require("configs.keymaps")
 
 require("configs.mason")
+require("configs.lspconfig")
 require("configs.rust-tools")
 require("configs.rubocop-lsp")
+require("configs.ruby-lsp")
 
 require("configs.treesitter")
 require("configs.trouble")
