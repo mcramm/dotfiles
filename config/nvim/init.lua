@@ -8,6 +8,7 @@ require("configs.lspconfig")
 require("configs.rust-tools")
 require("configs.rubocop-lsp")
 require("configs.ruby-lsp")
+require("configs.telescope")
 
 require("configs.treesitter")
 require("configs.trouble")
