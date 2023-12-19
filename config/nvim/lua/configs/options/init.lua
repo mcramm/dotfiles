@@ -19,7 +19,9 @@ local options = {
 	shortmess = vim.opt.shortmess + "c",
 	signcolumn = "yes",
 	updatetime = 750,
-  wildignore = vim.opt.wildignore + "*.jar,*.class,target/**,app/client/node_modules/**,node_modules/**"
+  wildignore = vim.opt.wildignore + "*.jar,*.class,target/**,app/client/node_modules/**,node_modules/**",
+  backupdir = vim.fn.expand("~/.vim/backup"),
+  directory = vim.fn.expand("~/.vim/backup"),
 }
 
 for k, v in pairs(options) do
