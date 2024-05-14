@@ -54,7 +54,7 @@ function chpwd {
   set-tab-color
 }
 
-function db {
+function db-themis {
   case $1 in
     1) db="themis_development_1";;
     2) db="themis_development_2";;
@@ -62,7 +62,37 @@ function db {
   esac
 
   echo "😘😘  CONNECTING TO `$db` 😘😘"
-  mysql --host=127.0.0.1 --port=6033 --user=themis_dev --password=<replace-me> $db
+  docker exec -it themis-mysql-1 mysql --user=<user> --password=<password> $db
+}
+
+function db-billing-service {
+  db="billing-service_development"
+  echo "🤑🤑 CONNECTING TO '$db' 🤑🤑"
+  docker-compose exec db mysql $db --user=<user> --password=<password>
+}
+
+function db-identity {
+  db="idp_dev"
+  echo "🔎🔎 CONNECTING TO '$db' 🔎🔎"
+  docker-compose exec mysqld mysql $db --user=<user> --password=<password>
+}
+
+function db-grow {
+  db="grow_development"
+  echo "📈📈 CONNECTING TO '$db' 📈📈 "
+  docker-compose exec mysql mysql $db --user=<user> --password=<password>
+}
+
+function db {
+  if [[ $PWD/ = $HOME/projects/clio/* ]]; then
+    case $PWD/ in
+      $HOME/projects/clio/themis/*) db-themis;;
+      $HOME/projects/clio/billing-service/*) db-billing-service;;
+      $HOME/projects/clio/identity/*) db-identity;;
+      $HOME/projects/clio/grow/*) db-grow;;
+      *) db-themis;;
+    esac
+  fi
 }
 
 function delete-branches() {

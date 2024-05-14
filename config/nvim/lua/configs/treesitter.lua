@@ -12,3 +12,6 @@ require('nvim-treesitter.configs').setup {
     max_file_lines = nil,
   }
 }
+
+-- Disable indenting when hitting .
+vim.cmd('autocmd FileType ruby setlocal indentkeys-=.');

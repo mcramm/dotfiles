@@ -24,6 +24,14 @@ local plugins = {
   { "rebelot/kanagawa.nvim", name = "kanagawa", lazy = false, priority = 1000 },
   { "ellisonleao/gruvbox.nvim", name = "gruvbox", lazy = false, priority = 1000 },
 
+  {
+    "goolord/alpha-nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function ()
+        require"alpha".setup(require"alpha.themes.startify".config)
+    end
+  },
+
   "tpope/vim-fugitive",
   "tpope/vim-commentary",
   "tpope/vim-endwise",
@@ -67,9 +75,8 @@ local plugins = {
   "neovim/nvim-lspconfig",
   "simrat39/rust-tools.nvim",
 
-  -- Writing
-  "nvim-lua/plenary.nvim",
   "jose-elias-alvarez/null-ls.nvim",
+  -- Writing
 }
 
 local opts = {
@@ -80,3 +87,5 @@ require("lazy").setup(plugins, opts)
 vim.api.nvim_set_var("test#strategy", "neovim");
 vim.api.nvim_set_var("test#neovim#term_position", "vertical");
 vim.api.nvim_set_var("copilot_node_command", "~/.nodenv/versions/16.20.0/bin/node")
+
+vim.cmd('autocmd FileType ruby setlocal indentkeys-=.')

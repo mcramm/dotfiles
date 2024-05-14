@@ -26,7 +26,7 @@ eval "$(rbenv init -)"
 # . /path/to/z.sh
 . `brew --prefix` /etc/profile.d/z.sh
 
-archey -c
+# archey -c
 
 # Customize to your needs...
 PATH=/usr/local/bin:$PATH
@@ -37,11 +37,14 @@ PATH=/usr/local/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/usr/lo
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval sh "$HOME/Dropbox/base16-shell/base16-default.dark.sh"
+eval sh "$HOME/dotfiles/base16-shell/base16-default.dark.sh"
 
 source $HOME/dotfiles/iterm2-tab-color/functions.sh
 
+export GPG_TTY=$(tty)
 
 set-tab-color
 
 eval "$(dev _hook)"
+
+unsetopt correct_all
