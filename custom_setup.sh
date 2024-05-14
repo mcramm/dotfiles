@@ -81,7 +81,7 @@ link_files() {
 install_homebrew() {
   printf "${CLEAR_LINE}[3/X]   Installing homebrew"
   printf "[1/X]   Installing homebrew" > setup.log
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" > setup.log 2> error.log
+  /bin/bash "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" > setup.log 2> error.log
 
   printf "${CLEAR_LINE}[4/X]   Upgrading homebrew"
   printf "[1/X]   Upgrading homebrew" > setup.log
@@ -93,7 +93,7 @@ install_packages() {
   printf "${CLEAR_LINE}[1/X]   Installing common packages"
   printf "[1/X]   Installing common packages" > setup.log
   brew install zsh tmux the_silver_searcher gpg git reattach-to-user-namespace ctags wget rbenv ruby-build \
-               rlwrap fish sbcl python postgres archey ripgrep
+               rlwrap fish sbcl python postgres archey ripgrep neovim
 }
 
 enable_zsh() {
@@ -134,20 +134,20 @@ list_apps() {
   link_to "1Password" "https://agilebits.com/onepassword"
   link_to "Alfred" "http://www.alfredapp.com/"
   link_to "Dash" "http://kapeli.com/dash"
-  link_to "Dropbox" "https://www.dropbox.com/"
   link_to "CloudApp" "http://www.getcloudapp.com/"
-  link_to "Karabiner (formally KeyRemap4Macbook and PCKeyboardHack)" "https://pqrs.org/osx/karabiner/"
+  link_to "Karabiner (formally KeyRemap4Macbook and PCKeyboardHack)" "https://karabiner-elements.pqrs.org"
   link_to "Self Control" "http://selfcontrolapp.com/"
+  link_to "Monodraw" "https://monodraw.helftone.com"
 }
 
 update_submodules
 link_files
 
-# install_homebrew
+install_homebrew
 install_packages
 # enable_fish
 enable_zsh
-# install_ruby
+install_ruby
 # install_leiningen
 list_apps
 
